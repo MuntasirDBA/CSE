@@ -1,0 +1,763 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CSE 1205 — Mid Term Suggestion Notes</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="ac74ee61-f93b-4c83-89aa-a4d3569a9d22" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📘</span></div><h1 class="page-title" dir="auto">CSE 1205 — Mid Term Suggestion Notes</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="9cace100-2ed6-4602-aa12-9a492dfa911b" class=""><strong>CSE 1205 | Introduction to Computer Science — Mid Term Exam Preparation</strong></p></div><div style="display:contents" dir="auto"><p id="361b68b2-4bb9-4ddf-a367-6112b035d320" class="">A comprehensive study guide organized by question number.</p></div><div style="display:contents" dir="auto"><hr id="569aaa9e-dd48-42ce-bf5f-bb691eee5813"/></div><div style="display:contents" dir="auto"><h1 id="7af0d4e0-abcd-463f-896f-e0996e7f1feb" class="">Question 1: Memory Systems</h1></div><div style="display:contents" dir="auto"><hr id="ec2902f8-1073-492e-889a-306b3a84f43c"/></div><div style="display:contents" dir="auto"><h2 id="8f958bee-cda9-48fb-b67b-ab4d76d53a6b" class="">1.1 Primary Memory (Main Memory)</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="5203dd73-f6a8-409c-bc4d-149bcdb83745"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="58f2aa84-d118-4cdd-97d1-f18b9c617e31" class="">Primary memory is the computer&#x27;s main internal memory that the CPU accesses directly. It is <strong>volatile</strong> (loses data when power is off) or <strong>non-volatile</strong>, and is faster but smaller than secondary memory.</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="febc3fea-40c8-4b53-8298-21cdba366fcc" class=""><strong>Key Characteristics:</strong></p></div><div style="display:contents" dir="auto"><ul id="fe9aac20-8f59-4b2b-822c-4421fa730a58" class="bulleted-list"><li style="list-style-type:disc">Directly accessible by the CPU</li></ul></div><div style="display:contents" dir="auto"><ul id="8faddfb2-7b52-4afd-834b-8ae8b3d07c19" class="bulleted-list"><li style="list-style-type:disc">Faster access speed compared to secondary memory</li></ul></div><div style="display:contents" dir="auto"><ul id="9071f4a1-0234-44c8-aa0f-2f539dc7aa4e" class="bulleted-list"><li style="list-style-type:disc">Limited in capacity</li></ul></div><div style="display:contents" dir="auto"><ul id="acf0b1a6-6eaa-4f20-ab8d-8e9e9f0d01d2" class="bulleted-list"><li style="list-style-type:disc">More expensive per byte</li></ul></div><div style="display:contents" dir="auto"><ul id="bba1f3c3-feff-4396-b667-b14922fb41e0" class="bulleted-list"><li style="list-style-type:disc">Includes <strong>RAM</strong> and <strong>ROM</strong></li></ul></div><div style="display:contents" dir="auto"><hr id="c073152e-05b5-472d-a47f-9c0c11c76273"/></div><div style="display:contents" dir="auto"><h2 id="6b039433-24d4-4306-b65e-11a3aea28dcc" class="">1.2 Secondary Memory (Auxiliary Memory)</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="176262cd-bb00-46ff-8310-694cd5f1850c"><div style="font-size:1.5em"><span class="icon">💾</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="cfdc347e-df48-4da9-a812-c891ee07a079" class="">Secondary memory is <strong>non-volatile</strong> storage used for permanent data retention. The CPU cannot access it directly — data must first be loaded into primary memory.</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="088af088-50f0-4166-98f5-1d452967e0ef" class=""><strong>Key Characteristics:</strong></p></div><div style="display:contents" dir="auto"><ul id="2013bae0-af7f-495e-9a38-74f7ba12960d" class="bulleted-list"><li style="list-style-type:disc">Non-volatile (data persists without power)</li></ul></div><div style="display:contents" dir="auto"><ul id="e61d928c-79b0-4ec2-8033-d710bf64eeb6" class="bulleted-list"><li style="list-style-type:disc">Larger storage capacity</li></ul></div><div style="display:contents" dir="auto"><ul id="e4b5a78e-647f-4c30-9c4a-900aaf0308b3" class="bulleted-list"><li style="list-style-type:disc">Slower access speed</li></ul></div><div style="display:contents" dir="auto"><ul id="1497aaa7-9eba-4d04-81d9-25da6a75e049" class="bulleted-list"><li style="list-style-type:disc">Cheaper per byte</li></ul></div><div style="display:contents" dir="auto"><ul id="22fa67f5-b2a0-4a14-b997-f8bb2c050d97" class="bulleted-list"><li style="list-style-type:disc">Examples: Hard Disk Drive (HDD), Solid State Drive (SSD), CD/DVD, USB Flash Drive, Magnetic Tape</li></ul></div><div style="display:contents" dir="auto"><p id="72e63195-f368-4c3f-949a-c896a1b4beb2" class=""><strong>Comparison: Primary vs Secondary Memory</strong></p></div><div style="display:contents" dir="ltr"><table id="26b0aa5b-6e9e-446d-b682-9cf0641e8af6" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="d0248e8f-bbc5-4dd2-ba2d-6da7de22a8c8"><th id="&gt;dhz" class="simple-table-header-color simple-table-header"><strong>Feature</strong></th><th id="ep?O" class="simple-table-header-color simple-table-header"><strong>Primary Memory</strong></th><th id="&lt;Hhm" class="simple-table-header-color simple-table-header"><strong>Secondary Memory</strong></th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="0caf922c-ee05-47d7-8724-b1dc3f13f1fb"><td id="&gt;dhz" class="">Volatility</td><td id="ep?O" class="">Volatile (RAM) / Non-volatile (ROM)</td><td id="&lt;Hhm" class="">Non-volatile</td></tr></div><div style="display:contents" dir="ltr"><tr id="d644a046-1e07-47b9-9ee6-8f6d7dbefce8"><td id="&gt;dhz" class="">Speed</td><td id="ep?O" class="">Very fast</td><td id="&lt;Hhm" class="">Slower</td></tr></div><div style="display:contents" dir="ltr"><tr id="cd7594bd-b4f5-4b29-9404-235529e14b8b"><td id="&gt;dhz" class="">Capacity</td><td id="ep?O" class="">Small (GBs)</td><td id="&lt;Hhm" class="">Large (TBs)</td></tr></div><div style="display:contents" dir="ltr"><tr id="279db957-38aa-4594-813e-d2003993e6ac"><td id="&gt;dhz" class="">Cost</td><td id="ep?O" class="">Expensive per byte</td><td id="&lt;Hhm" class="">Cheap per byte</td></tr></div><div style="display:contents" dir="ltr"><tr id="4300df8c-9d91-4f8d-affe-69e76b84c0d9"><td id="&gt;dhz" class="">CPU Access</td><td id="ep?O" class="">Direct</td><td id="&lt;Hhm" class="">Indirect (via primary memory)</td></tr></div><div style="display:contents" dir="ltr"><tr id="e8623dee-c155-45d6-a5ee-f887d3e7d937"><td id="&gt;dhz" class="">Examples</td><td id="ep?O" class="">RAM, ROM, Cache</td><td id="&lt;Hhm" class="">HDD, SSD, USB, DVD</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><hr id="549fedfb-a63d-414b-927a-9f769491aa15"/></div><div style="display:contents" dir="auto"><h2 id="5f5ce24c-6d57-4339-9663-6dcc6aacc74f" class="">1.3 RAM (Random Access Memory)</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="3549b77a-ee20-4e64-8bbd-28022992edb7"><div style="font-size:1.5em"><span class="icon">⚡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="0ed9e508-b9b6-4549-96aa-2bdf8b8bc7d6" class="">RAM is <strong>volatile</strong> primary memory used to store data and instructions currently being processed by the CPU. It allows <strong>read and write</strong> operations.</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="c0fada92-b327-4157-b113-98696a4c617e" class=""><strong>Types of RAM:</strong></p></div><div style="display:contents" dir="auto"><h3 id="46f47158-4997-4005-9444-879d2b0e548a" class="">SRAM (Static RAM)</h3></div><div style="display:contents" dir="auto"><ul id="236fc6d6-d09c-4987-a739-e9ec7a6156a1" class="bulleted-list"><li style="list-style-type:disc">Uses <strong>flip-flop circuits</strong> to store data</li></ul></div><div style="display:contents" dir="auto"><ul id="202a5c5c-c990-4311-8b0f-7deacc9fd6f6" class="bulleted-list"><li style="list-style-type:disc"><strong>Faster</strong> and does <strong>not need refreshing</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="7293b9eb-c85e-4760-b3f3-c5b4612f5be6" class="bulleted-list"><li style="list-style-type:disc">More <strong>expensive</strong>, lower density</li></ul></div><div style="display:contents" dir="auto"><ul id="08b7b7c3-4217-4fc4-9fb4-a4511437c6b8" class="bulleted-list"><li style="list-style-type:disc">Used in <strong>cache memory</strong></li></ul></div><div style="display:contents" dir="auto"><h3 id="bc561571-6594-40a8-a0f1-a8497ee65fa0" class="">DRAM (Dynamic RAM)</h3></div><div style="display:contents" dir="auto"><ul id="d3f242fd-6924-4e9e-8064-d8ecac5f11c3" class="bulleted-list"><li style="list-style-type:disc">Uses <strong>capacitors</strong> to store data</li></ul></div><div style="display:contents" dir="auto"><ul id="322093c2-0bd7-4ff8-a350-2cc7e9d5bd6f" class="bulleted-list"><li style="list-style-type:disc"><strong>Slower</strong> and <strong>needs periodic refreshing</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="a4adf89a-05a8-47ad-8792-f3fae4d9890c" class="bulleted-list"><li style="list-style-type:disc"><strong>Cheaper</strong>, higher density</li></ul></div><div style="display:contents" dir="auto"><ul id="df1a938e-3a45-4cff-b675-efe3f3907779" class="bulleted-list"><li style="list-style-type:disc">Used as <strong>main memory</strong> in computers</li></ul></div><div style="display:contents" dir="ltr"><table id="2a304e4c-e92e-46c4-b90c-f030a59ec609" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="d353d77d-853f-4355-88c2-283a4795d590"><th id="s\TF" class="simple-table-header-color simple-table-header"><strong>Feature</strong></th><th id="VeIz" class="simple-table-header-color simple-table-header"><strong>SRAM</strong></th><th id="y;z^" class="simple-table-header-color simple-table-header"><strong>DRAM</strong></th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="93d5edf4-5272-4803-a089-d495aff2e05c"><td id="s\TF" class="">Storage Element</td><td id="VeIz" class="">Flip-flops</td><td id="y;z^" class="">Capacitors</td></tr></div><div style="display:contents" dir="ltr"><tr id="08e1f58e-bea4-4667-840b-4214c2e67c8a"><td id="s\TF" class="">Speed</td><td id="VeIz" class="">Faster</td><td id="y;z^" class="">Slower</td></tr></div><div style="display:contents" dir="ltr"><tr id="2b464278-9c96-448a-92d5-3478afb21821"><td id="s\TF" class="">Refresh Needed</td><td id="VeIz" class="">No</td><td id="y;z^" class="">Yes</td></tr></div><div style="display:contents" dir="ltr"><tr id="10b15603-328c-4d08-b00c-8c396a566bc6"><td id="s\TF" class="">Cost</td><td id="VeIz" class="">Expensive</td><td id="y;z^" class="">Cheaper</td></tr></div><div style="display:contents" dir="ltr"><tr id="1dfad081-4628-44fe-8f74-0babfc7e764b"><td id="s\TF" class="">Density</td><td id="VeIz" class="">Low</td><td id="y;z^" class="">High</td></tr></div><div style="display:contents" dir="ltr"><tr id="9ee42a76-a26f-4312-a1da-8fed6fbe40f6"><td id="s\TF" class="">Use</td><td id="VeIz" class="">Cache memory</td><td id="y;z^" class="">Main memory</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><hr id="e588f60a-0cb2-44d8-9cff-f4a28cf1eebc"/></div><div style="display:contents" dir="auto"><h2 id="5302bd54-dd78-4b03-81dd-189445ebd62e" class="">1.4 ROM (Read-Only Memory)</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="4731a841-389f-44a8-bd3a-9fd4738c8990"><div style="font-size:1.5em"><span class="icon">🔒</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="1896e425-fd01-4a8d-9cc8-c078936a5434" class="">ROM is <strong>non-volatile</strong> primary memory that stores permanent instructions (e.g., BIOS/firmware). Data is written during manufacturing and <strong>cannot be easily modified</strong>.</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="a63b67ca-6303-492b-a544-efb2f2a947c3" class=""><strong>Types of ROM:</strong></p></div><div style="display:contents" dir="auto"><ol type="1" id="b14ce165-90fc-4795-923e-144399f199b2" class="numbered-list" start="1"><li><strong>PROM (Programmable ROM)</strong> — Can be programmed <strong>once</strong> after manufacturing using a special device.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="79d7ec86-e112-4523-a937-8d41dbf69792" class="numbered-list" start="2"><li><strong>EPROM (Erasable Programmable ROM)</strong> — Can be erased using <strong>ultraviolet (UV) light</strong> and reprogrammed.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="10bb3500-0a36-469d-b5f4-73e4a3446d1d" class="numbered-list" start="3"><li><strong>EEPROM (Electrically Erasable Programmable ROM)</strong> — Can be erased and reprogrammed <strong>electrically</strong>, byte by byte.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2d2777b0-0a35-447f-84bb-831aac5929c2" class="numbered-list" start="4"><li><strong>Flash Memory</strong> — A type of EEPROM that can be erased and written in <strong>blocks</strong>; used in USB drives, SSDs.</li></ol></div><div style="display:contents" dir="auto"><hr id="308b097d-551a-427b-8c4a-162288a3b275"/></div><div style="display:contents" dir="auto"><h2 id="d3dfc61f-455c-4c29-8386-412eec178026" class="">1.5 Cache Memory</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="26554631-1a03-4c58-9d70-189227231a0f"><div style="font-size:1.5em"><span class="icon">🚀</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="2e3ae396-5a9d-49c9-b56d-56243c390ebc" class="">Cache is a <strong>very fast, small</strong> memory located between the CPU and main memory (RAM). It stores <strong>frequently accessed data and instructions</strong> to speed up processing.</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="e8605df3-5e8e-4367-a87f-fedd5f0269ba" class=""><strong>How Cache Works:</strong></p></div><div style="display:contents" dir="auto"><ul id="a18a82db-c87f-424c-8b7f-ff60f95c57eb" class="bulleted-list"><li style="list-style-type:disc">When the CPU needs data, it first checks the cache (<strong>cache hit</strong>).</li></ul></div><div style="display:contents" dir="auto"><ul id="be4f2311-3855-49b8-9293-bfbe6be79af0" class="bulleted-list"><li style="list-style-type:disc">If not found (<strong>cache miss</strong>), it fetches from RAM and copies to cache.</li></ul></div><div style="display:contents" dir="auto"><ul id="ebe965fb-f85d-4280-aaed-c901d7573527" class="bulleted-list"><li style="list-style-type:disc">Principle: <strong>Locality of Reference</strong> — programs tend to access the same data/instructions repeatedly.</li></ul></div><div style="display:contents" dir="auto"><p id="47429706-3382-4fd4-8f42-0a7d871e71d9" class=""><strong>Levels of Cache:</strong></p></div><div style="display:contents" dir="ltr"><table id="9553208c-aa25-4226-9c2d-cbb38dea4520" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="014b977d-2fad-4b06-97eb-0be49559b6ab"><th id="@;w~" class="simple-table-header-color simple-table-header"><strong>Level</strong></th><th id="L;zK" class="simple-table-header-color simple-table-header"><strong>Location</strong></th><th id="YgEE" class="simple-table-header-color simple-table-header"><strong>Size</strong></th><th id="ycU[" class="simple-table-header-color simple-table-header"><strong>Speed</strong></th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="43f1bfd0-9089-4486-902d-5d50d595b18b"><td id="@;w~" class="">L1 Cache</td><td id="L;zK" class="">Inside CPU core</td><td id="YgEE" class="">Smallest (32–128 KB)</td><td id="ycU[" class="">Fastest</td></tr></div><div style="display:contents" dir="ltr"><tr id="d669dce8-c69c-4f16-9740-b92f052aab53"><td id="@;w~" class="">L2 Cache</td><td id="L;zK" class="">Inside or near CPU</td><td id="YgEE" class="">Medium (256 KB – 1 MB)</td><td id="ycU[" class="">Fast</td></tr></div><div style="display:contents" dir="ltr"><tr id="17be7645-7bf2-4c7f-ac77-a25252831040"><td id="@;w~" class="">L3 Cache</td><td id="L;zK" class="">Shared among cores</td><td id="YgEE" class="">Largest (2–64 MB)</td><td id="ycU[" class="">Slower than L1/L2</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><hr id="b4e4c644-0d48-415f-9779-e032a8cd3ea1"/></div><div style="display:contents" dir="auto"><h2 id="ec48c36a-a308-408a-a570-2af4d8b8a8a5" class="">1.6 Memory Hierarchy</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="1b4a619f-4575-40e4-976a-8e032a55b9c7"><div style="font-size:1.5em"><span class="icon">📊</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="d1e8061b-0139-47d5-870e-88dd31cde471" class="">The memory hierarchy organizes storage by <strong>speed, cost, and capacity</strong>. Faster memory is smaller and more expensive; slower memory is larger and cheaper.</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="83463bb5-34ce-4169-b875-3cc1423c6703" class=""><strong>Memory Hierarchy (Top = Fastest, Bottom = Slowest):</strong></p></div><div style="display:contents" dir="auto"><ol type="1" id="0e51a21b-0651-4681-bcf3-0b7c418b88cb" class="numbered-list" start="1"><li><strong>CPU Registers</strong> — Fastest, smallest, inside CPU</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="99879438-ccf1-468f-abc1-1041a53d873f" class="numbered-list" start="2"><li><strong>L1 Cache</strong> — Very fast, very small</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="b1a68ba4-9de2-4d94-8c7a-6193baa420a3" class="numbered-list" start="3"><li><strong>L2 Cache</strong> — Fast, small</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="b79eb12c-c58d-4e8b-9db5-d634c2200d41" class="numbered-list" start="4"><li><strong>L3 Cache</strong> — Moderate speed, moderate size</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="978dd044-78ba-444b-acb4-fc09a1fe0fe5" class="numbered-list" start="5"><li><strong>RAM (Main Memory)</strong> — Moderate speed, moderate capacity</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="cefc0fde-b400-4109-b4ca-e5595fb33505" class="numbered-list" start="6"><li><strong>SSD / HDD (Secondary Storage)</strong> — Slow, large capacity</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="c42d2178-4aa4-48a8-a751-53624fa31c9a" class="numbered-list" start="7"><li><strong>Magnetic Tape / Optical Discs (Tertiary Storage)</strong> — Slowest, largest, cheapest</li></ol></div><div style="display:contents" dir="auto"><p id="77d32934-e6a0-4d64-bfa4-2906588a39c5" class=""><strong>Key Principle:</strong></p></div><div style="display:contents" dir="auto"><blockquote id="bac33dd3-8390-4ee7-8033-392b0d44a750" class="">As we move <strong>down</strong> the hierarchy:<br/>→ <strong>Speed decreases</strong><br/>→ <strong>Capacity increases</strong><br/>→ <strong>Cost per byte decreases</strong><br/>→ <strong>Access time increases</strong></blockquote></div><div style="display:contents" dir="auto"><hr id="54a645e2-9742-46b3-a8bc-f8ec3995d195"/></div><div style="display:contents" dir="auto"><h1 id="725f0a13-0433-47b1-8409-ab5e2e01f72b" class="">Question 2(a) + 2(b) + 4: Number Systems &amp; Computer Types</h1></div><div style="display:contents" dir="auto"><hr id="1172f127-ad70-4518-9d9d-bec4e1f2a78f"/></div><div style="display:contents" dir="auto"><h2 id="ded1a0e3-e0ea-4c05-bfbb-9e9e3fd893fc" class="">2.1 Types of Computers</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="72f131ad-c96f-4d9f-a049-4f434e5ece7a"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="3449f748-6d87-412d-97b3-a62c8e83091f" class="">Computers are classified based on <strong>size, purpose, and data handling</strong>.</p></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="d27c7848-88ad-4387-9ccc-43b221e43603" class="">A. Based on Size</h3></div><div style="display:contents" dir="auto"><ol type="1" id="c26c7edd-c9bb-4bd8-949e-f5ecc71da963" class="numbered-list" start="1"><li><strong>Supercomputer</strong><div style="display:contents" dir="auto"><ul id="281155da-c4d4-421e-8049-eb74fa0ede20" class="bulleted-list"><li style="list-style-type:disc">Most powerful; used for weather forecasting, scientific simulations, nuclear research</li></ul></div><div style="display:contents" dir="auto"><ul id="ac4c36fc-28dd-4849-8145-b538c62095d9" class="bulleted-list"><li style="list-style-type:disc">Examples: IBM Summit, Fugaku</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="bb46d0b0-7232-4285-a420-d4987aefbc67" class="numbered-list" start="2"><li><strong>Mainframe Computer</strong><div style="display:contents" dir="auto"><ul id="1ce203ae-04d6-47d0-a58f-2d1af555b2a6" class="bulleted-list"><li style="list-style-type:disc">Large, supports thousands of users simultaneously</li></ul></div><div style="display:contents" dir="auto"><ul id="ab9bf7ad-fcb6-4d98-9cd5-eba23c3f3cb6" class="bulleted-list"><li style="list-style-type:disc">Used in banking, airlines, government</li></ul></div><div style="display:contents" dir="auto"><ul id="db2cc906-41db-4dab-bcbf-06da9ffd783d" class="bulleted-list"><li style="list-style-type:disc">Examples: IBM z15</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="062b3f53-6faa-4ff9-be2e-baf19034d4ce" class="numbered-list" start="3"><li><strong>Minicomputer (Mid-range)</strong><div style="display:contents" dir="auto"><ul id="43324a57-b371-4c98-8239-31be9f8adf6c" class="bulleted-list"><li style="list-style-type:disc">Smaller than mainframes; multi-user</li></ul></div><div style="display:contents" dir="auto"><ul id="26c15623-fdd6-4e12-8477-0f090cef414d" class="bulleted-list"><li style="list-style-type:disc">Used in small businesses and departments</li></ul></div><div style="display:contents" dir="auto"><ul id="d668dc44-2eed-41aa-bbfc-e3ebfe224e16" class="bulleted-list"><li style="list-style-type:disc">Example: PDP-11</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="20a7d704-7c6e-4890-bf37-22706f614c83" class="numbered-list" start="4"><li><strong>Microcomputer (Personal Computer)</strong><div style="display:contents" dir="auto"><ul id="d0b5e060-f145-42fd-a44c-dd43e8b03d6c" class="bulleted-list"><li style="list-style-type:disc">Single-user; most common</li></ul></div><div style="display:contents" dir="auto"><ul id="056e8b62-c26d-4b79-b8ab-7b1c2c432745" class="bulleted-list"><li style="list-style-type:disc">Includes desktops, laptops, tablets, smartphones</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="98604973-d208-460d-ab87-20a8f718492f" class="numbered-list" start="5"><li><strong>Workstation</strong><div style="display:contents" dir="auto"><ul id="a6176cd3-90d6-4234-91ff-881d2a9b8e0c" class="bulleted-list"><li style="list-style-type:disc">High-performance microcomputer for engineering, design, scientific work</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><h3 id="995940f0-d654-43c7-bc71-dbbcee01b744" class="">B. Based on Purpose</h3></div><div style="display:contents" dir="auto"><ol type="1" id="9d10582f-075d-46d7-99f8-1953ca8102b2" class="numbered-list" start="1"><li><strong>General-Purpose Computer</strong> — Can perform a wide variety of tasks (e.g., desktops)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="a43a3447-c7ed-44bc-a492-01793a1ec189" class="numbered-list" start="2"><li><strong>Special-Purpose Computer</strong> — Designed for a specific task (e.g., traffic signal controller, ATM)</li></ol></div><div style="display:contents" dir="auto"><h3 id="c17a4213-2868-44e5-8a04-e02f9e7d6cbf" class="">C. Based on Data Handling</h3></div><div style="display:contents" dir="auto"><ol type="1" id="348486aa-270e-4f63-a323-97a090fb5892" class="numbered-list" start="1"><li><strong>Analog Computer</strong> — Processes continuous data (e.g., thermometer, speedometer)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="7603d6c3-aee9-4762-87a0-5caedc427366" class="numbered-list" start="2"><li><strong>Digital Computer</strong> — Processes discrete/binary data (e.g., PCs, laptops)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="1a4c112d-0af3-4ecc-ab90-7818e89ac67a" class="numbered-list" start="3"><li><strong>Hybrid Computer</strong> — Combines analog and digital (e.g., hospital ICU monitors)</li></ol></div><div style="display:contents" dir="auto"><hr id="2bcea36e-2954-40bd-ada6-569d214b894e"/></div><div style="display:contents" dir="auto"><h2 id="df243548-51c1-4800-87a3-1f6640f4fd4a" class="">2.2 Social Impact of Computers</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="ee95a22a-eba4-45f0-9a41-0ca8585a9b2a"><div style="font-size:1.5em"><span class="icon">🌍</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="4376dc7a-0629-4551-9168-2f5617bf3dbb" class="">Computers have transformed virtually every aspect of modern society — both positively and negatively.</p></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="16a35f34-a94f-4a20-870f-87fcdeedfa87" class="">Positive Impacts</h3></div><div style="display:contents" dir="auto"><ul id="e850a2dd-53a7-4ee8-904b-e93d12ccc597" class="bulleted-list"><li style="list-style-type:disc"><strong>Education</strong> — E-learning, online courses, digital libraries, virtual classrooms</li></ul></div><div style="display:contents" dir="auto"><ul id="34283bdf-d82d-45ea-aab2-b8586ecb61e9" class="bulleted-list"><li style="list-style-type:disc"><strong>Healthcare</strong> — Computerized diagnostics, telemedicine, electronic health records, robotic surgery</li></ul></div><div style="display:contents" dir="auto"><ul id="ff4940d1-ecb9-4546-aa1b-3b823fde0805" class="bulleted-list"><li style="list-style-type:disc"><strong>Communication</strong> — Email, social media, video conferencing, instant messaging</li></ul></div><div style="display:contents" dir="auto"><ul id="b6060cf4-2af6-42c8-9db8-bd104d5b2d5a" class="bulleted-list"><li style="list-style-type:disc"><strong>Business &amp; Economy</strong> — E-commerce, online banking, automated accounting, digital marketing</li></ul></div><div style="display:contents" dir="auto"><ul id="988a0948-35a1-4436-8378-cd6281bbaa3d" class="bulleted-list"><li style="list-style-type:disc"><strong>Entertainment</strong> — Video games, streaming, digital art, virtual reality</li></ul></div><div style="display:contents" dir="auto"><ul id="c4714e35-8708-492c-8794-c25d09fd9b72" class="bulleted-list"><li style="list-style-type:disc"><strong>Science &amp; Research</strong> — Simulations, data analysis, genome mapping</li></ul></div><div style="display:contents" dir="auto"><ul id="ae73dced-810d-4469-b8b8-68a024a7bd4a" class="bulleted-list"><li style="list-style-type:disc"><strong>Government</strong> — E-governance, digital ID systems, online tax filing</li></ul></div><div style="display:contents" dir="auto"><h3 id="3ee62470-c03c-4487-b26d-654e68ba4cb0" class="">Negative Impacts</h3></div><div style="display:contents" dir="auto"><ul id="fee2c85b-aad4-4378-af67-df4ef8769f51" class="bulleted-list"><li style="list-style-type:disc"><strong>Unemployment</strong> — Automation replacing human jobs</li></ul></div><div style="display:contents" dir="auto"><ul id="506d15c1-9327-429f-9d86-057307d0dc46" class="bulleted-list"><li style="list-style-type:disc"><strong>Privacy Concerns</strong> — Data breaches, surveillance, identity theft</li></ul></div><div style="display:contents" dir="auto"><ul id="a6605ce9-7e3a-4b43-8be0-a7f05a40d6b5" class="bulleted-list"><li style="list-style-type:disc"><strong>Cybercrime</strong> — Hacking, phishing, ransomware</li></ul></div><div style="display:contents" dir="auto"><ul id="b6ac15cf-d1a3-4b13-bdd0-9a580c2731f1" class="bulleted-list"><li style="list-style-type:disc"><strong>Health Issues</strong> — Eye strain, poor posture, screen addiction</li></ul></div><div style="display:contents" dir="auto"><ul id="0f6324e2-4aac-4310-b960-349f6d50f4ef" class="bulleted-list"><li style="list-style-type:disc"><strong>Digital Divide</strong> — Unequal access to technology across socioeconomic groups</li></ul></div><div style="display:contents" dir="auto"><ul id="27c2d672-479c-4b10-87d9-25041412e527" class="bulleted-list"><li style="list-style-type:disc"><strong>Social Isolation</strong> — Reduced face-to-face interaction</li></ul></div><div style="display:contents" dir="auto"><ul id="f53c73f4-4455-43cc-a37a-fba9307a31a4" class="bulleted-list"><li style="list-style-type:disc"><strong>Misinformation</strong> — Spread of fake news and propaganda</li></ul></div><div style="display:contents" dir="auto"><hr id="b6d79b8d-f685-4a82-a125-27456077414d"/></div><div style="display:contents" dir="auto"><h2 id="63fcfecd-d95c-4fa7-82a7-546a2090471d" class="">2.3 Number System Conversions</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="f30d6379-99da-4317-ba89-5b2447207a4a"><div style="font-size:1.5em"><span class="icon">🔢</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="e9e9f5cb-ae62-4d45-a337-0525514c5638" class="">Computers use <strong>binary (base-2)</strong>. Understanding conversions between <strong>Decimal (base-10), Binary (base-2), Octal (base-8), and Hexadecimal (base-16)</strong> is essential.</p></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="87217159-55fb-4c4b-8e5c-1662d959473f" class="">Decimal to Binary (Integer)</h3></div><div style="display:contents" dir="auto"><p id="cfc27cf2-f0ba-4235-bd03-2fc13f3d04f4" class=""><strong>Method:</strong> Repeated division by 2, record remainders bottom-to-top.</p></div><div style="display:contents" dir="auto"><p id="289e4d60-3211-4d0a-95aa-f8ccbd7bb46c" class=""><strong>Example:</strong> Convert <strong>(25)₁₀</strong> to Binary</p></div><div style="display:contents" dir="ltr"><table id="11f41af8-4244-4286-bc42-998a3ccff296" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="b472b035-c683-4212-a130-9e57d761898c"><th id="\tKg" class="simple-table-header-color simple-table-header"><strong>Division</strong></th><th id="JlSW" class="simple-table-header-color simple-table-header"><strong>Quotient</strong></th><th id=";QEN" class="simple-table-header-color simple-table-header"><strong>Remainder</strong></th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="15927211-bb49-401b-b46b-5ead6f51961f"><td id="\tKg" class="">25 ÷ 2</td><td id="JlSW" class="">12</td><td id=";QEN" class="">1</td></tr></div><div style="display:contents" dir="ltr"><tr id="8211c681-f941-4443-a5a9-562e7e28e3be"><td id="\tKg" class="">12 ÷ 2</td><td id="JlSW" class="">6</td><td id=";QEN" class="">0</td></tr></div><div style="display:contents" dir="ltr"><tr id="512eb939-1b5d-49e9-9db9-fbbe7bd40e90"><td id="\tKg" class="">6 ÷ 2</td><td id="JlSW" class="">3</td><td id=";QEN" class="">0</td></tr></div><div style="display:contents" dir="ltr"><tr id="a9ccb2ff-bf9a-4630-b28e-4fd45dd8dd39"><td id="\tKg" class="">3 ÷ 2</td><td id="JlSW" class="">1</td><td id=";QEN" class="">1</td></tr></div><div style="display:contents" dir="ltr"><tr id="8791ba11-ca18-4f6c-893a-1b1a5090af6b"><td id="\tKg" class="">1 ÷ 2</td><td id="JlSW" class="">0</td><td id=";QEN" class="">1</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="b1636c0f-b250-4c77-9ac3-bbf33107183d" class=""><strong>Result: (25)₁₀ = (11001)₂</strong> ← Read remainders bottom to top</p></div><div style="display:contents" dir="auto"><hr id="a20d1e8c-409b-419d-a9de-1d8e1f018774"/></div><div style="display:contents" dir="auto"><h3 id="74fafc22-2a43-46f7-902e-7d72c0a56889" class="">Octal to Hexadecimal</h3></div><div style="display:contents" dir="auto"><p id="d09fbeeb-a898-42ae-ac17-15496d2c01e6" class=""><strong>Method:</strong> Octal → Binary → Hexadecimal</p></div><div style="display:contents" dir="auto"><p id="0de3fed5-b4f9-4065-9715-87f0954bf6b6" class=""><strong>Step 1:</strong> Convert each octal digit to <strong>3-bit binary</strong></p></div><div style="display:contents" dir="auto"><p id="91083d1d-308c-4f3f-a6f5-50a69f490c82" class=""><strong>Step 2:</strong> Group binary digits into sets of <strong>4 from right</strong></p></div><div style="display:contents" dir="auto"><p id="5156d231-cb10-4d2b-b32e-7e3af8e9b584" class=""><strong>Step 3:</strong> Convert each group to hexadecimal</p></div><div style="display:contents" dir="auto"><p id="72c7ff17-54f6-4164-b16d-b21a556f1719" class=""><strong>Example:</strong> Convert <strong>(725)₈</strong> to Hexadecimal</p></div><div style="display:contents" dir="auto"><ul id="192561c7-650f-43fd-9b17-0ac444cae05c" class="bulleted-list"><li style="list-style-type:disc">7 = 111, 2 = 010, 5 = 101</li></ul></div><div style="display:contents" dir="auto"><ul id="1adf13f8-8a6a-42e5-a07d-0c8d6c38c68d" class="bulleted-list"><li style="list-style-type:disc">Binary: <strong>111 010 101</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="e6100381-0545-43dc-992d-90f136683731" class="bulleted-list"><li style="list-style-type:disc">Regroup into 4 bits: <strong>0001 1101 0101</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="467f9299-3fc3-4fc4-9fcd-006fb7a1d018" class="bulleted-list"><li style="list-style-type:disc">0001 = 1, 1101 = D, 0101 = 5</li></ul></div><div style="display:contents" dir="auto"><ul id="b12779cc-2524-48d6-991e-ac5d8abed53c" class="bulleted-list"><li style="list-style-type:disc"><strong>Result: (725)₈ = (1D5)₁₆</strong></li></ul></div><div style="display:contents" dir="auto"><hr id="b31559bf-99bc-4a2b-ba05-d02a254a822c"/></div><div style="display:contents" dir="auto"><h3 id="14972260-7277-4778-986f-5eba08aa8403" class="">Binary to Octal</h3></div><div style="display:contents" dir="auto"><p id="d4009981-d970-416a-ae40-48fe769f47ff" class=""><strong>Method:</strong> Group binary digits into sets of <strong>3 from right</strong>, convert each group.</p></div><div style="display:contents" dir="auto"><p id="7694f764-4845-4c0d-b2cd-e0a4783ad6fe" class=""><strong>Example:</strong> Convert <strong>(110101011)₂</strong> to Octal</p></div><div style="display:contents" dir="auto"><ul id="513a0989-392b-4e82-84d7-1edd76b87ad2" class="bulleted-list"><li style="list-style-type:disc">Group: <strong>110 101 011</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="b0fb7df8-4ec4-494e-b279-0027edbb9241" class="bulleted-list"><li style="list-style-type:disc">110 = 6, 101 = 5, 011 = 3</li></ul></div><div style="display:contents" dir="auto"><ul id="d6a7c20a-6c76-4c4e-95e4-7e51f2f0af2e" class="bulleted-list"><li style="list-style-type:disc"><strong>Result: (110101011)₂ = (653)₈</strong></li></ul></div><div style="display:contents" dir="auto"><hr id="2385e4b2-2cef-493f-aa36-e1ea62289a72"/></div><div style="display:contents" dir="auto"><h3 id="f0adbd1f-d49b-4749-810a-8bccfd08075f" class="">Hexadecimal to Decimal</h3></div><div style="display:contents" dir="auto"><p id="316b1f2c-b5a0-48e3-b5c8-4c47708e6a63" class=""><strong>Method:</strong> Multiply each digit by its positional power of 16, then sum.</p></div><div style="display:contents" dir="auto"><p id="4cc268ae-d5de-4e57-823c-ba5f5a16d6d5" class=""><strong>Example:</strong> Convert <strong>(2A3)₁₆</strong> to Decimal</p></div><div style="display:contents" dir="auto"><ul id="4d3985f4-e23a-4596-a905-6e789b5fa4bf" class="bulleted-list"><li style="list-style-type:disc">2 × 16² = 2 × 256 = 512</li></ul></div><div style="display:contents" dir="auto"><ul id="c62b787d-e880-47e8-bc0c-75c5ae6de0fe" class="bulleted-list"><li style="list-style-type:disc">A (10) × 16¹ = 10 × 16 = 160</li></ul></div><div style="display:contents" dir="auto"><ul id="25acc99f-2c68-4d42-b8b9-868f02fd737c" class="bulleted-list"><li style="list-style-type:disc">3 × 16⁰ = 3 × 1 = 3</li></ul></div><div style="display:contents" dir="auto"><ul id="c5412568-7b7e-4400-aff0-07744e1fb0d8" class="bulleted-list"><li style="list-style-type:disc"><strong>Result: (2A3)₁₆ = 512 + 160 + 3 = (675)₁₀</strong></li></ul></div><div style="display:contents" dir="auto"><hr id="dceb53fb-f560-4776-a34e-d4303cc1a445"/></div><div style="display:contents" dir="auto"><h2 id="adb7bc21-5560-4202-b67e-49dcc39e5dc0" class="">2.4 Octal ↔ Hexadecimal Using BCD (Binary Coded Representation)</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="5d24b1d8-5849-42ae-8826-528a2dc7b2f6"><div style="font-size:1.5em"><span class="icon">📐</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="ff312e89-f300-4d3b-a852-4acfd3c9ec62" class=""><strong>BCD-style approach:</strong> Each octal digit maps to <strong>3 binary bits</strong>, each hex digit maps to <strong>4 binary bits</strong>. Convert by going through binary as an intermediate.</p></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="594ecc6e-0e50-4f0d-8876-3eb603cff0e1" class="">Octal to Hex (via Binary)</h3></div><div style="display:contents" dir="auto"><p id="9f2cbd1a-7379-456a-a126-3c8844c18f2a" class=""><strong>Example:</strong> <strong>(374)₈</strong> → Hex</p></div><div style="display:contents" dir="auto"><ol type="1" id="50dfcac9-0785-48a7-8b3c-ae96ba7227f6" class="numbered-list" start="1"><li>Octal to 3-bit binary: 3 = 011, 7 = 111, 4 = 100</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="f4c26afc-217e-4bd1-b3f5-57ce5d00768e" class="numbered-list" start="2"><li>Combine: <strong>011 111 100</strong></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="b1a5d6b8-5ef6-448e-bc79-debce1a0bd59" class="numbered-list" start="3"><li>Regroup into 4: <strong>0 0111 1110 0</strong> → pad: <strong>0000 1111 1100</strong></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="6acf30d7-85b5-4f9a-a951-a0cc5a67d1f3" class="numbered-list" start="4"><li>0000 = 0, 1111 = F, 1100 = C</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="33208497-b50c-4faa-b040-6822875e43c8" class="numbered-list" start="5"><li><strong>Result: (374)₈ = (FC)₁₆</strong></li></ol></div><div style="display:contents" dir="auto"><h3 id="ffac1f16-0705-4618-975f-d6516afab8f1" class="">Hex to Octal (via Binary)</h3></div><div style="display:contents" dir="auto"><p id="637948dd-3c33-4f8c-9cf3-378212a5ffcb" class=""><strong>Example:</strong> <strong>(1F4)₁₆</strong> → Octal</p></div><div style="display:contents" dir="auto"><ol type="1" id="fd2ce97e-ac0f-486f-89d1-162ebcd07364" class="numbered-list" start="1"><li>Hex to 4-bit binary: 1 = 0001, F = 1111, 4 = 0100</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="ec5f71bf-6b5a-4504-a937-04e7f1df1e7f" class="numbered-list" start="2"><li>Combine: <strong>0001 1111 0100</strong></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="dc3a75ed-b075-4887-a984-6c5b65afc09f" class="numbered-list" start="3"><li>Regroup into 3: <strong>000 111 110 100</strong></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="1da253f5-a425-44a3-a718-360debf939fb" class="numbered-list" start="4"><li>000 = 0, 111 = 7, 110 = 6, 100 = 4</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="9f7559fc-3516-441b-8360-a11781b8e8c7" class="numbered-list" start="5"><li><strong>Result: (1F4)₁₆ = (764)₈</strong></li></ol></div><div style="display:contents" dir="auto"><hr id="6ede02a4-ea53-4cfd-ba41-024f96b25e54"/></div><div style="display:contents" dir="auto"><h2 id="4fd9610e-bbe8-4dc3-9819-10c056d71c0e" class="">2.5 Binary Multiplication</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="52785a4c-8257-4029-8809-5ed97b80c72b"><div style="font-size:1.5em"><span class="icon">✖️</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="92068f78-524d-468c-bea2-90621b8571e3" class="">Binary multiplication follows the same principle as decimal multiplication but with only 0s and 1s.</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="9de8aa0c-2ae3-42a1-ad60-aa7883221745" class=""><strong>Rules:</strong></p></div><div style="display:contents" dir="auto"><ul id="a1646985-f914-4c9e-8449-339d26963f0d" class="bulleted-list"><li style="list-style-type:disc">0 × 0 = 0</li></ul></div><div style="display:contents" dir="auto"><ul id="5f876b4f-bf5a-4dd2-84e7-c99fa69c09b9" class="bulleted-list"><li style="list-style-type:disc">0 × 1 = 0</li></ul></div><div style="display:contents" dir="auto"><ul id="9b600b93-7c04-4ac0-9e6e-affb41684427" class="bulleted-list"><li style="list-style-type:disc">1 × 0 = 0</li></ul></div><div style="display:contents" dir="auto"><ul id="e541eb35-c173-440e-9a69-d5ff3ca51b9c" class="bulleted-list"><li style="list-style-type:disc">1 × 1 = 1</li></ul></div><div style="display:contents" dir="auto"><p id="81116eeb-3a94-449f-824d-5b5adca493fa" class=""><strong>Example:</strong> Multiply <strong>(1101)₂ × (1011)₂</strong></p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5dbb8148-4ec8-4026-ba21-53e795c18133" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">      1 1 0 1   (Multiplicand = 13)
+    × 1 0 1 1   (Multiplier = 11)
+    ---------
+      1 1 0 1   (1101 × 1)
+    1 1 0 1 0   (1101 × 1, shifted left 1)
+  0 0 0 0 0 0   (1101 × 0, shifted left 2)
+1 1 0 1 0 0 0   (1101 × 1, shifted left 3)
+---------------
+1 0 0 0 1 1 1 1  = (143)₁₀ ✓ (13 × 11 = 143)</code></pre></div><div style="display:contents" dir="auto"><hr id="445babf7-a0d5-4282-ac84-c4c3f8ae9581"/></div><div style="display:contents" dir="auto"><h2 id="e709f2f9-91e1-4bb8-a667-3a10abe9afe8" class="">2.6 Binary Division</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="244b3aec-d179-4862-abcd-8ca2e212b1e4"><div style="font-size:1.5em"><span class="icon">➗</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="fe8448ec-5904-4d85-8163-36d1c44197fb" class="">Binary division works like long division in decimal, using <strong>repeated subtraction and shifting</strong>.</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="0a3c96b8-9bda-454e-830d-dbefd9012a80" class=""><strong>Example:</strong> Divide <strong>(10110)₂ ÷ (110)₂</strong> → i.e., 22 ÷ 6</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2d118fba-6d21-4680-a477-e4852d991ec0" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">        0 0 1 1  ← Quotient (= 3)
+      --------
+110 ) 1 0 1 1 0
+      - 0 0 0     (110 doesn&#x27;t fit into 1)
+      -------
+        1 0 1     (110 doesn&#x27;t fit into 10, fits into 101? No.)
+        Bring down: 1011
+      - 1 1 0
+      -------
+        1 0 1 0
+      - 1 1 0
+      -------
+        1 0 0  ← Remainder (= 4)</code></pre></div><div style="display:contents" dir="auto"><p id="f482f11a-ae9c-4029-87ba-79515d5f43b0" class=""><strong>Result: (10110)₂ ÷ (110)₂ = Quotient (11)₂, Remainder (100)₂</strong></p></div><div style="display:contents" dir="auto"><p id="0f2d8ce8-41f0-4693-aa13-8d91b9119dd7" class="">Verification: 22 ÷ 6 = 3 remainder 4 ✓</p></div><div style="display:contents" dir="auto"><hr id="fe017a13-b38e-403a-9019-88d2091ae880"/></div><div style="display:contents" dir="auto"><h2 id="3c502dbf-5d82-478b-912a-898a6744d1ff" class="">2.7 Binary Subtraction with 2&#x27;s Complement</h2></div><div style="display:contents" dir="ltr"><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex" id="07dcdbc3-cd7e-49a7-a487-20f761e3eedf"><div style="font-size:1.5em"><span class="icon">➖</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="c7986ae6-e4ba-4e68-b7d0-030d2e966e24" class=""><strong>2&#x27;s Complement</strong> is the most common method for representing negative numbers and performing subtraction in computers.<br/><br/><strong>Formula:</strong> 2&#x27;s Complement = 1&#x27;s Complement + 1<br/><strong>1&#x27;s Complement</strong> = Flip all bits (0 → 1, 1 → 0)</p></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="4aba33b9-3a5f-465f-8030-73d141ad7946" class="">Steps for A − B using 2&#x27;s Complement:</h3></div><div style="display:contents" dir="auto"><ol type="1" id="30f7659f-ff1a-4418-a642-48231723a6aa" class="numbered-list" start="1"><li>Find the <strong>1&#x27;s complement</strong> of B (flip all bits)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="4b3967a1-a8bc-47ac-a3ee-a2c8177fe98f" class="numbered-list" start="2"><li>Add <strong>1</strong> to get the <strong>2&#x27;s complement</strong> of B</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="cbd929ba-552f-42a5-baa3-4a10627d1f7a" class="numbered-list" start="3"><li>Add A + (2&#x27;s complement of B)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="6040f367-aa7f-4c55-b639-8297466b98a4" class="numbered-list" start="4"><li>If there is a <strong>carry out</strong> → result is <strong>positive</strong> (discard carry)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="81c30cb0-c86e-4281-9b36-e97c09d4bc68" class="numbered-list" start="5"><li>If there is <strong>no carry</strong> → result is <strong>negative</strong> (take 2&#x27;s complement of result)</li></ol></div><div style="display:contents" dir="auto"><h3 id="7d979dbe-a410-411d-8fe1-0f7dcb4e17a6" class="">Example 1: (1010)₂ − (0111)₂ → i.e., 10 − 7</h3></div><div style="display:contents" dir="auto"><ol type="1" id="fb7ec82c-33fd-41a5-bed2-942d9c6e73e7" class="numbered-list" start="1"><li>1&#x27;s complement of 0111 = <strong>1000</strong></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="95230ffb-d187-42e0-a946-7e72fa551921" class="numbered-list" start="2"><li>2&#x27;s complement = 1000 + 1 = <strong>1001</strong></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="c24eb9ee-99e5-4d8c-b483-bb283c229da4" class="numbered-list" start="3"><li>Add: 1010 + 1001 = <strong>1 0011</strong></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="8c3ee0ad-b72c-46c1-abf0-d4792f353439" class="numbered-list" start="4"><li>Carry = 1 → Result is <strong>positive</strong>, discard carry</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="5fbc8077-8257-49c5-91b4-72cec6427807" class="numbered-list" start="5"><li><strong>Result: (0011)₂ = (3)₁₀</strong> ✓</li></ol></div><div style="display:contents" dir="auto"><h3 id="8e175dd4-4233-451e-b238-bfc2fddb0471" class="">Example 2: (0100)₂ − (0111)₂ → i.e., 4 − 7</h3></div><div style="display:contents" dir="auto"><ol type="1" id="70189d01-d5ee-473f-b019-26b457f462f5" class="numbered-list" start="1"><li>1&#x27;s complement of 0111 = <strong>1000</strong></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="451b5c43-fca9-42dc-a08a-644efdb3cb7f" class="numbered-list" start="2"><li>2&#x27;s complement = 1000 + 1 = <strong>1001</strong></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="aac6468a-f542-4a42-a71f-b2f3870f8214" class="numbered-list" start="3"><li>Add: 0100 + 1001 = <strong>1101</strong> (no carry beyond 4 bits)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="9cd29062-5744-45fa-a932-d2fb8c6b0e0c" class="numbered-list" start="4"><li>No carry → Result is <strong>negative</strong></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="95b6c2e5-ef00-4b7e-bf88-26cf02d85089" class="numbered-list" start="5"><li>Take 2&#x27;s complement of 1101: 0010 + 1 = <strong>0011</strong></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2c5ff256-a761-4aed-8fbc-4578458d786e" class="numbered-list" start="6"><li><strong>Result: −(0011)₂ = −(3)₁₀</strong> ✓</li></ol></div><div style="display:contents" dir="auto"><hr id="4ae41ef5-6631-4b73-8dee-82768bb5e674"/></div><div style="display:contents" dir="auto"><h1 id="734b3e6e-625a-4ad5-8674-d023890ddb5b" class="">Question 3: Input/Output Devices</h1></div><div style="display:contents" dir="auto"><hr id="79560464-c263-4358-a827-b12f49f6bac8"/></div><div style="display:contents" dir="auto"><h2 id="61f904f0-4fb7-48b0-90d6-25b40ae9a839" class="">3.1 Keyboard Layout</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="a81185b9-54db-46cf-9fb9-fec4f7f59ab2"><div style="font-size:1.5em"><span class="icon">⌨️</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="b4b76849-0e5d-4a35-a570-faa7065476d4" class="">A keyboard is the most common <strong>input device</strong> for entering text, numbers, and commands.</p></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="e0d3c5b0-f7eb-4ba5-8ffd-e1a0a175d738" class="">Major Keyboard Layouts</h3></div><div style="display:contents" dir="auto"><p id="b66922b3-4241-4ec1-9375-92dcfa5ca4bc" class=""><strong>1. QWERTY Layout</strong></p></div><div style="display:contents" dir="auto"><ul id="031b3251-0e93-47bb-93e8-0a01a596fac7" class="bulleted-list"><li style="list-style-type:disc">Most widely used worldwide</li></ul></div><div style="display:contents" dir="auto"><ul id="53bd6dee-d486-49ba-b1b1-b2f23651c5e9" class="bulleted-list"><li style="list-style-type:disc">Named after the first 6 letters on the top letter row: Q-W-E-R-T-Y</li></ul></div><div style="display:contents" dir="auto"><ul id="3f6140e4-86d6-4d52-af5d-0896d020ad67" class="bulleted-list"><li style="list-style-type:disc">Designed in the 1870s by <strong>Christopher Latham Sholes</strong> for typewriters</li></ul></div><div style="display:contents" dir="auto"><ul id="e238ee5b-bc92-466b-9e23-76f6224b69e4" class="bulleted-list"><li style="list-style-type:disc">Designed to <strong>reduce jamming</strong> in mechanical typewriters by separating commonly used letter pairs</li></ul></div><div style="display:contents" dir="auto"><p id="b4d1bb7a-831c-49fe-9418-45be527deee0" class=""><strong>2. DVORAK Layout</strong></p></div><div style="display:contents" dir="auto"><ul id="d509238b-d5c5-4d50-8b0e-d9214fddb5b5" class="bulleted-list"><li style="list-style-type:disc">Designed by <strong>Dr. August Dvorak</strong> in 1936</li></ul></div><div style="display:contents" dir="auto"><ul id="0296fddb-7290-4004-bb9a-7e6340f6a549" class="bulleted-list"><li style="list-style-type:disc">Optimized for <strong>speed and efficiency</strong> — most common letters are on the home row</li></ul></div><div style="display:contents" dir="auto"><ul id="355e18d8-465d-4d45-93cd-a58ef077c21a" class="bulleted-list"><li style="list-style-type:disc">Less popular due to QWERTY dominance</li></ul></div><div style="display:contents" dir="auto"><p id="43a5ec04-8de1-45a8-b585-786436fbf799" class=""><strong>3. AZERTY Layout</strong></p></div><div style="display:contents" dir="auto"><ul id="ef3e2437-110d-489c-a441-c97c96b1a255" class="bulleted-list"><li style="list-style-type:disc">Used primarily in <strong>France and Belgium</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="530cd01d-3b9e-4236-baab-63685f41ecc6" class="bulleted-list"><li style="list-style-type:disc">Variation of QWERTY adapted for French language characters</li></ul></div><div style="display:contents" dir="auto"><h3 id="ba0e85ac-25d0-4858-8223-7c00c4e4991c" class="">Sections of a Standard Keyboard</h3></div><div style="display:contents" dir="ltr"><table id="8b47fea7-8102-4f0e-81b9-076d24efea10" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="676ca2fa-33d5-4837-b080-1d2a607e908a"><th id="GfZF" class="simple-table-header-color simple-table-header"><strong>Section</strong></th><th id="~&gt;|N" class="simple-table-header-color simple-table-header"><strong>Keys</strong></th><th id="XHEL" class="simple-table-header-color simple-table-header"><strong>Purpose</strong></th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="09fdbaac-a48e-41a7-9c51-3b23cc6a85fc"><td id="GfZF" class="">Alphanumeric Keys</td><td id="~&gt;|N" class="">A-Z, 0-9, symbols</td><td id="XHEL" class="">Typing text and numbers</td></tr></div><div style="display:contents" dir="ltr"><tr id="0db447b3-51c9-4636-8ad5-00a0b6a96439"><td id="GfZF" class="">Function Keys</td><td id="~&gt;|N" class="">F1 – F12</td><td id="XHEL" class="">Shortcuts for specific operations</td></tr></div><div style="display:contents" dir="ltr"><tr id="68934b9d-8953-4fc7-8237-8878e271ccab"><td id="GfZF" class="">Navigation Keys</td><td id="~&gt;|N" class="">Arrow keys, Home, End, PgUp, PgDn</td><td id="XHEL" class="">Moving cursor and scrolling</td></tr></div><div style="display:contents" dir="ltr"><tr id="0e5db2f9-9e34-42e5-be97-92e1ed280d26"><td id="GfZF" class="">Numeric Keypad</td><td id="~&gt;|N" class="">0-9, +, −, *, /, Enter</td><td id="XHEL" class="">Quick numeric data entry</td></tr></div><div style="display:contents" dir="ltr"><tr id="45543d50-7513-40a4-a8af-c5095f04a444"><td id="GfZF" class="">Modifier Keys</td><td id="~&gt;|N" class="">Shift, Ctrl, Alt, Caps Lock</td><td id="XHEL" class="">Modify behavior of other keys</td></tr></div><div style="display:contents" dir="ltr"><tr id="4bb72f77-f5ed-4a1f-9c7e-18c83dba8a7a"><td id="GfZF" class="">Special Keys</td><td id="~&gt;|N" class="">Enter, Backspace, Tab, Esc, Space</td><td id="XHEL" class="">Control and editing functions</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><hr id="c9fbff85-4f6f-46c7-bfaf-2899dcf75e42"/></div><div style="display:contents" dir="auto"><h2 id="cf9e63d3-6a44-4fc3-b140-951bd77fd8c8" class="">3.2 Mouse Types</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="129260a3-2204-4879-bda7-75c097afd05b"><div style="font-size:1.5em"><span class="icon">🖱️</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="a74a7aad-a90b-4729-9f77-4519bafc2055" class="">A mouse is a <strong>pointing input device</strong> that detects two-dimensional motion relative to a surface and translates it into cursor movement on screen.</p></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="c419a287-86fd-439d-b884-5948c84a3913" class="">Types of Mouse</h3></div><div style="display:contents" dir="auto"><p id="3cfc12c8-3758-4042-ab00-38dcc4a34622" class=""><strong>1. Mechanical Mouse (Ball Mouse)</strong></p></div><div style="display:contents" dir="auto"><ul id="27e77247-a723-4062-85fa-2792928bbbcb" class="bulleted-list"><li style="list-style-type:disc">Contains a <strong>rubber ball</strong> on the bottom</li></ul></div><div style="display:contents" dir="auto"><ul id="37d18de6-ceeb-489b-bd05-e494bf3e780e" class="bulleted-list"><li style="list-style-type:disc">Ball rolls when moved, and internal <strong>rollers</strong> detect direction</li></ul></div><div style="display:contents" dir="auto"><ul id="b2fdc020-e3cd-4060-acb1-510d55714ca9" class="bulleted-list"><li style="list-style-type:disc">Requires a <strong>mouse pad</strong> for proper functioning</li></ul></div><div style="display:contents" dir="auto"><ul id="6cc570fb-a535-42e9-bd6e-a3cdb48254b9" class="bulleted-list"><li style="list-style-type:disc"><strong>Disadvantage:</strong> Collects dust, requires regular cleaning, less precise</li></ul></div><div style="display:contents" dir="auto"><p id="b6288668-5d2d-4737-87b0-6b39073984cb" class=""><strong>2. Optical Mouse</strong></p></div><div style="display:contents" dir="auto"><ul id="8590eab8-53ce-412e-a5d4-85c32bbfc38a" class="bulleted-list"><li style="list-style-type:disc">Uses an <strong>LED light</strong> and <strong>optical sensor (photodiode)</strong> to detect movement</li></ul></div><div style="display:contents" dir="auto"><ul id="a6615c6f-db5d-418c-9677-61787d2e254e" class="bulleted-list"><li style="list-style-type:disc">No moving parts → more reliable</li></ul></div><div style="display:contents" dir="auto"><ul id="b6c28b67-ec09-4f7a-8cc3-6f29eb7b2ff2" class="bulleted-list"><li style="list-style-type:disc">Works on most surfaces (not glass)</li></ul></div><div style="display:contents" dir="auto"><ul id="d29e2f7a-7bc6-42df-8006-910aa2bdfb40" class="bulleted-list"><li style="list-style-type:disc">Most <strong>commonly used</strong> today</li></ul></div><div style="display:contents" dir="auto"><p id="0dcb6e51-57c8-4f59-8511-eabaf7ac70c6" class=""><strong>3. Laser Mouse</strong></p></div><div style="display:contents" dir="auto"><ul id="b9fb4552-d0b3-48e5-b700-2eb7cf4734b9" class="bulleted-list"><li style="list-style-type:disc">Uses a <strong>laser beam</strong> instead of LED for tracking</li></ul></div><div style="display:contents" dir="auto"><ul id="51fe20ab-505a-45ee-b593-344e9cb8a6cf" class="bulleted-list"><li style="list-style-type:disc"><strong>Higher precision</strong> (higher DPI) than optical mouse</li></ul></div><div style="display:contents" dir="auto"><ul id="6a22dc34-2694-4f68-8579-39d6417cef0e" class="bulleted-list"><li style="list-style-type:disc">Works on more surface types including glass</li></ul></div><div style="display:contents" dir="auto"><ul id="1ef384e6-24c3-4bb9-9d75-af9fcdb320b6" class="bulleted-list"><li style="list-style-type:disc">Preferred by <strong>gamers and designers</strong></li></ul></div><div style="display:contents" dir="auto"><p id="67f283c3-2ef7-4e21-ab99-848bc7412276" class=""><strong>4. Wireless Mouse</strong></p></div><div style="display:contents" dir="auto"><ul id="e2fc756e-1b15-4957-bbb5-b860d71cf41f" class="bulleted-list"><li style="list-style-type:disc">Connects via <strong>Bluetooth</strong> or <strong>RF (Radio Frequency) receiver (USB dongle)</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="ad212ce3-d916-4ae0-91b0-388057b989f4" class="bulleted-list"><li style="list-style-type:disc">No cable → more freedom of movement</li></ul></div><div style="display:contents" dir="auto"><ul id="c53dc09d-c2dd-4f0f-b713-475d0cdeca00" class="bulleted-list"><li style="list-style-type:disc">Requires <strong>batteries or charging</strong></li></ul></div><div style="display:contents" dir="auto"><p id="9d8246e2-4f94-4279-b28c-5ad23cc8d12b" class=""><strong>5. Trackball Mouse</strong></p></div><div style="display:contents" dir="auto"><ul id="14e790f5-a774-4501-9e43-07f68680476a" class="bulleted-list"><li style="list-style-type:disc">Has a <strong>stationary ball on top</strong> that the user rotates with thumb/fingers</li></ul></div><div style="display:contents" dir="auto"><ul id="c2a27e8f-0a3c-4466-be0e-4ccc493a619f" class="bulleted-list"><li style="list-style-type:disc">The body doesn&#x27;t move → requires <strong>less desk space</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="fdaa61fd-7097-4aab-948d-92e433c15a37" class="bulleted-list"><li style="list-style-type:disc">Used in specialized workstations</li></ul></div><div style="display:contents" dir="auto"><p id="ac61378e-130a-4287-b3dc-fab891992fe8" class=""><strong>6. Gaming Mouse</strong></p></div><div style="display:contents" dir="auto"><ul id="ad0f9181-dd3e-4ba8-b27d-0fe404c1082d" class="bulleted-list"><li style="list-style-type:disc">High <strong>DPI (dots per inch)</strong> for precision</li></ul></div><div style="display:contents" dir="auto"><ul id="16a678bc-f402-47f5-8243-bd6bbec593a4" class="bulleted-list"><li style="list-style-type:disc"><strong>Programmable buttons</strong>, adjustable weights</li></ul></div><div style="display:contents" dir="auto"><ul id="9d79e5c3-d2c4-4823-aee0-0905e45be5a3" class="bulleted-list"><li style="list-style-type:disc">Ergonomic design for extended use</li></ul></div><div style="display:contents" dir="auto"><hr id="aa821086-6c0d-43fa-a288-3afc85c2465a"/></div><div style="display:contents" dir="auto"><h2 id="393e39a5-8b12-4e4e-af3c-9822bb1b5d7f" class="">3.3 Monitor Types and Comparison</h2></div><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="1eac1b89-65e8-4384-942c-78f041d1fa4b"><div style="font-size:1.5em"><span class="icon">🖥️</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="46e4d319-9182-483e-aa7c-b371c8471c3c" class="">A monitor (display screen) is the primary <strong>output device</strong> for visual information.</p></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="898a8271-7973-4bfe-a911-6bf112cfc753" class="">Types of Monitors</h3></div><div style="display:contents" dir="auto"><p id="c148eb20-8405-41ec-a8d0-31fc537c74cc" class=""><strong>1. CRT (Cathode Ray Tube)</strong></p></div><div style="display:contents" dir="auto"><ul id="852c7745-b9b7-47b2-9488-96f17c77680d" class="bulleted-list"><li style="list-style-type:disc">Oldest technology</li></ul></div><div style="display:contents" dir="auto"><ul id="f03661aa-a94b-43cf-ab58-a3900829718b" class="bulleted-list"><li style="list-style-type:disc">Uses <strong>electron beams</strong> to illuminate phosphor dots on screen</li></ul></div><div style="display:contents" dir="auto"><ul id="bb632b09-6c36-486c-9009-f2eb3119f4e7" class="bulleted-list"><li style="list-style-type:disc"><strong>Bulky and heavy</strong>, high power consumption</li></ul></div><div style="display:contents" dir="auto"><ul id="2c737459-3985-462e-9e70-f06a6f90719b" class="bulleted-list"><li style="list-style-type:disc">Good color reproduction for its time</li></ul></div><div style="display:contents" dir="auto"><ul id="7608bf75-f35a-4693-81c0-9d58020d2983" class="bulleted-list"><li style="list-style-type:disc">Now largely <strong>obsolete</strong></li></ul></div><div style="display:contents" dir="auto"><p id="14e09ef8-e31a-4e5b-b53d-d2e7dd87c13b" class=""><strong>2. LCD (Liquid Crystal Display)</strong></p></div><div style="display:contents" dir="auto"><ul id="5ac11289-72e9-4648-ba60-15c328f28fb9" class="bulleted-list"><li style="list-style-type:disc">Uses <strong>liquid crystals</strong> between two layers of polarized glass</li></ul></div><div style="display:contents" dir="auto"><ul id="97315c1c-52c2-4108-aa60-2362ee50c420" class="bulleted-list"><li style="list-style-type:disc">Requires a <strong>backlight</strong> (usually LED or CCFL)</li></ul></div><div style="display:contents" dir="auto"><ul id="dbd9882f-4714-4f12-9392-66f990f6bc7c" class="bulleted-list"><li style="list-style-type:disc"><strong>Thin, lightweight, energy-efficient</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="8e23cb42-b2eb-4041-bf41-79251b261c0c" class="bulleted-list"><li style="list-style-type:disc">Most common in laptops and budget monitors</li></ul></div><div style="display:contents" dir="auto"><p id="67d103a0-6797-4efd-85a2-038e09f79605" class=""><strong>3. LED (Light-Emitting Diode)</strong></p></div><div style="display:contents" dir="auto"><ul id="8800ab2b-f2dd-4209-8675-5513ec52baf9" class="bulleted-list"><li style="list-style-type:disc">A type of LCD that uses <strong>LED backlighting</strong> instead of CCFL</li></ul></div><div style="display:contents" dir="auto"><ul id="f5b47786-4ca8-4ee9-8390-aa088ebaf8d5" class="bulleted-list"><li style="list-style-type:disc"><strong>Better contrast, brightness, and energy efficiency</strong> than standard LCD</li></ul></div><div style="display:contents" dir="auto"><ul id="28ba5fc1-67a8-45ac-87da-0b659e826df1" class="bulleted-list"><li style="list-style-type:disc">Thinner and lighter</li></ul></div><div style="display:contents" dir="auto"><ul id="718baa60-456a-4b09-9bf6-e01a3359c201" class="bulleted-list"><li style="list-style-type:disc">Most common monitor type today</li></ul></div><div style="display:contents" dir="auto"><p id="9b2289ab-319c-40df-8513-a7cbf171d299" class=""><strong>4. OLED (Organic LED)</strong></p></div><div style="display:contents" dir="auto"><ul id="3455392c-2296-49e0-902b-8198f5cf9304" class="bulleted-list"><li style="list-style-type:disc">Each pixel produces its <strong>own light</strong> — no backlight needed</li></ul></div><div style="display:contents" dir="auto"><ul id="d71dd89b-6f53-499f-a6c5-50926c688f40" class="bulleted-list"><li style="list-style-type:disc"><strong>Perfect blacks</strong> (pixels can turn completely off)</li></ul></div><div style="display:contents" dir="auto"><ul id="d2a28c74-3e13-41ad-af99-d72ff3a95283" class="bulleted-list"><li style="list-style-type:disc"><strong>Excellent contrast ratio and color accuracy</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="e043887a-edb7-4fc9-80d2-736481acd312" class="bulleted-list"><li style="list-style-type:disc">Thinner and flexible</li></ul></div><div style="display:contents" dir="auto"><ul id="0ee1e4f8-660a-40df-af5c-bc22b2880630" class="bulleted-list"><li style="list-style-type:disc"><strong>Expensive</strong>, risk of <strong>burn-in</strong></li></ul></div><div style="display:contents" dir="auto"><p id="b3fe4888-5d57-4df7-ad78-87c9d7f955fe" class=""><strong>5. AMOLED (Active Matrix OLED)</strong></p></div><div style="display:contents" dir="auto"><ul id="a4090273-cb79-455b-8f74-aa1f12525a86" class="bulleted-list"><li style="list-style-type:disc">Advanced OLED with <strong>active matrix</strong> for faster pixel response</li></ul></div><div style="display:contents" dir="auto"><ul id="e993fdb4-01a1-4cc4-a0c7-855a7be61406" class="bulleted-list"><li style="list-style-type:disc">Used in <strong>smartphones and premium displays</strong></li></ul></div><div style="display:contents" dir="auto"><p id="3f1dd011-ad22-4d9e-8ece-760c429e12fc" class=""><strong>Comparison Table:</strong></p></div><div style="display:contents" dir="ltr"><table id="8e843525-ef9e-4a67-9c4b-77ad9ea43d87" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="6edec975-5656-4718-a5fa-cb161c2ecd48"><th id="qE&lt;Q" class="simple-table-header-color simple-table-header"><strong>Feature</strong></th><th id="WHo;" class="simple-table-header-color simple-table-header"><strong>CRT</strong></th><th id="}zLt" class="simple-table-header-color simple-table-header"><strong>LCD</strong></th><th id="=jqo" class="simple-table-header-color simple-table-header"><strong>LED</strong></th><th id="zyy_" class="simple-table-header-color simple-table-header"><strong>OLED</strong></th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="82801ab1-d3c6-4299-8cfa-e7ddd888e89d"><td id="qE&lt;Q" class="">Thickness</td><td id="WHo;" class="">Very bulky</td><td id="}zLt" class="">Thin</td><td id="=jqo" class="">Thinner</td><td id="zyy_" class="">Thinnest</td></tr></div><div style="display:contents" dir="ltr"><tr id="95d5f233-f77d-4e76-a39b-28df41662ede"><td id="qE&lt;Q" class="">Weight</td><td id="WHo;" class="">Heavy</td><td id="}zLt" class="">Light</td><td id="=jqo" class="">Lighter</td><td id="zyy_" class="">Lightest</td></tr></div><div style="display:contents" dir="ltr"><tr id="c9108235-9ec2-4e8f-9d29-dab74d6fd759"><td id="qE&lt;Q" class="">Power Use</td><td id="WHo;" class="">High</td><td id="}zLt" class="">Moderate</td><td id="=jqo" class="">Low</td><td id="zyy_" class="">Very low</td></tr></div><div style="display:contents" dir="ltr"><tr id="cb301443-1b15-45eb-836e-4242682ca780"><td id="qE&lt;Q" class="">Contrast</td><td id="WHo;" class="">Moderate</td><td id="}zLt" class="">Moderate</td><td id="=jqo" class="">Good</td><td id="zyy_" class="">Excellent</td></tr></div><div style="display:contents" dir="ltr"><tr id="dba12f87-7f11-4c63-b3d9-14fa99a091e4"><td id="qE&lt;Q" class="">Black Level</td><td id="WHo;" class="">Good</td><td id="}zLt" class="">Poor (backlight bleed)</td><td id="=jqo" class="">Better</td><td id="zyy_" class="">Perfect (true black)</td></tr></div><div style="display:contents" dir="ltr"><tr id="c3eec00d-5ba0-44b9-a823-34e84e5a218f"><td id="qE&lt;Q" class="">Cost</td><td id="WHo;" class="">Obsolete</td><td id="}zLt" class="">Affordable</td><td id="=jqo" class="">Moderate</td><td id="zyy_" class="">Expensive</td></tr></div><div style="display:contents" dir="ltr"><tr id="d07577c5-b1aa-46d2-9692-fbbf0a2c01ac"><td id="qE&lt;Q" class="">Lifespan</td><td id="WHo;" class="">Long</td><td id="}zLt" class="">Long</td><td id="=jqo" class="">Long</td><td id="zyy_" class="">Shorter (burn-in risk)</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><hr id="12db961e-5be8-4981-852b-cc326284f5a5"/></div><div style="display:contents" dir="auto"><h2 id="f424b83f-e8a5-459e-a03d-7217e046503c" class="">3.4 Need for Modem and Why It Is a Peripheral</h2></div><div style="display:contents" dir="ltr"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="0e1b1338-7ff4-427f-a457-6f4c8d690d2f"><div style="font-size:1.5em"><span class="icon">📡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="40fa37ff-5771-4431-9eb5-e55f82953f44" class="">A <strong>modem (Modulator-Demodulator)</strong> is a device that converts digital signals from a computer into analog signals for transmission over telephone/cable lines, and vice versa.</p></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="94ed80c9-a8b5-4d6f-b804-031b9a2c7182" class="">What Does a Modem Do?</h3></div><div style="display:contents" dir="auto"><ul id="b2961a9b-1fee-4134-978e-820871fb7870" class="bulleted-list"><li style="list-style-type:disc"><strong>Modulation:</strong> Converts <strong>digital data → analog signal</strong> (for sending)</li></ul></div><div style="display:contents" dir="auto"><ul id="c45b6505-ea6b-48ef-bfc5-5b368c95bd88" class="bulleted-list"><li style="list-style-type:disc"><strong>Demodulation:</strong> Converts <strong>analog signal → digital data</strong> (for receiving)</li></ul></div><div style="display:contents" dir="auto"><ul id="0599f3ab-e52b-4e57-94f8-2cb7d0de624d" class="bulleted-list"><li style="list-style-type:disc">Enables computers to communicate over networks that were originally designed for analog signals (telephone lines)</li></ul></div><div style="display:contents" dir="auto"><h3 id="f2e97f4b-fd77-457f-8a98-0c380fbdb32f" class="">Why Do We Need a Modem?</h3></div><div style="display:contents" dir="auto"><ol type="1" id="e5e2cccd-ef2e-4535-a68d-896664bea941" class="numbered-list" start="1"><li><strong>Internet Access</strong> — Connects your computer to your Internet Service Provider (ISP)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="e69a8254-0e3e-4ca0-9a39-12e106def05d" class="numbered-list" start="2"><li><strong>Data Transmission</strong> — Enables sending/receiving data over telephone or cable lines</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2b20b8b1-9682-415d-b87c-68370b70e24e" class="numbered-list" start="3"><li><strong>Signal Conversion</strong> — Bridges the gap between digital computers and analog communication infrastructure</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="a0c67211-6926-44bd-afc8-dbf6f20f5b8b" class="numbered-list" start="4"><li><strong>Remote Communication</strong> — Enables email, web browsing, video calls, file transfer</li></ol></div><div style="display:contents" dir="auto"><h3 id="40553c9a-b1fb-4a1c-ad46-5e3e70dbfffe" class="">Types of Modems</h3></div><div style="display:contents" dir="auto"><ul id="6d9ea481-e6a7-4116-9b3d-c3ac1d8a93ca" class="bulleted-list"><li style="list-style-type:disc"><strong>Dial-up Modem</strong> — Uses telephone line, very slow (up to 56 Kbps)</li></ul></div><div style="display:contents" dir="auto"><ul id="c9eb1309-9a5b-4ce8-938a-fc9b4be0197f" class="bulleted-list"><li style="list-style-type:disc"><strong>DSL Modem</strong> — Uses telephone line with higher speed (up to 100+ Mbps)</li></ul></div><div style="display:contents" dir="auto"><ul id="688e05d3-36a2-477d-8ecf-0a612df8fc9f" class="bulleted-list"><li style="list-style-type:disc"><strong>Cable Modem</strong> — Uses cable TV line, high speed</li></ul></div><div style="display:contents" dir="auto"><ul id="60041308-e129-48f7-8dff-75f35412cbc8" class="bulleted-list"><li style="list-style-type:disc"><strong>Fiber Modem (ONT)</strong> — Converts fiber optic signals, fastest</li></ul></div><div style="display:contents" dir="auto"><ul id="536cae40-58f7-433c-8ffb-223116208e97" class="bulleted-list"><li style="list-style-type:disc"><strong>Wireless/Cellular Modem</strong> — Uses mobile networks (3G/4G/5G)</li></ul></div><div style="display:contents" dir="auto"><h3 id="cc7d2d82-7789-4d3a-98dc-8f8f9c4321b6" class="">Why Is a Modem a Peripheral Device?</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex" id="b6477f58-1275-42c3-971e-26eba3e2a7be"><div style="font-size:1.5em"><span class="icon">✅</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="9ce0d5c0-cfe4-43ad-9c39-7d3d653074ee" class="">A <strong>peripheral device</strong> is any external or auxiliary device that connects to and works with a computer but is <strong>not part of the core computer system</strong> (CPU, motherboard, primary memory).</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="143ac601-8cce-4a68-874b-84b0acc3b88f" class="">A modem qualifies as a peripheral because:</p></div><div style="display:contents" dir="auto"><ol type="1" id="0c9b12ab-46bc-4734-8e0f-2f49e1d5eae8" class="numbered-list" start="1"><li><strong>Not essential for basic operation</strong> — A computer can function (process data, run programs) without a modem</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="d9c386cd-65db-407a-9f83-2f462aa20f68" class="numbered-list" start="2"><li><strong>External connectivity</strong> — It connects to the computer via USB, Ethernet, or PCIe slot</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="7cb47d42-5fab-42d5-a57e-7d45f0c753b9" class="numbered-list" start="3"><li><strong>Input/Output role</strong> — It acts as both an <strong>input device</strong> (receiving data from internet) and <strong>output device</strong> (sending data to internet)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="80f5861b-abda-41d2-a171-f731a08a1bb3" class="numbered-list" start="4"><li><strong>Removable/Replaceable</strong> — Can be added, removed, or upgraded independently</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="1ec02f64-99cd-4852-a1f3-bfd1d6589949" class="numbered-list" start="5"><li><strong>Auxiliary function</strong> — Its purpose (internet connectivity) is supplementary to the computer&#x27;s core processing tasks</li></ol></div><div style="display:contents" dir="auto"><hr id="9417b49a-d660-486b-a240-be9ad4885902"/></div><div style="display:contents" dir="auto"><h1 id="86da4c99-7190-4215-808c-7961d6dcd7bd" class="">Quick Revision Checklist</h1></div><div style="display:contents" dir="auto"><ul id="ec11b12e-0a66-48f5-b4c0-becaa10ec01c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Q1:</strong> Primary vs Secondary Memory, RAM (SRAM vs DRAM), ROM types, Cache levels, Memory Hierarchy</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="f19b194e-e9c7-49c2-a49a-310ee529e641" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Q2(a)+2(b)+4:</strong> Types of Computers (by size/purpose/data), Social Impact (positive &amp; negative)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="03c34ed0-1227-4cd9-bd53-a8063bff60e2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Q2(a)+2(b)+4:</strong> Dec→Bin, Oct→Hex, Bin→Oct, Hex→Dec conversions</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="f896b499-38e5-4afc-8bc6-f753bc7d3393" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Q2(a)+2(b)+4:</strong> Oct↔Hex via BCD (binary intermediate)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="3f799504-b97d-4a11-b5d7-5cfbd0cae7ad" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Q2(a)+2(b)+4:</strong> Binary Multiplication and Division (long method)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="aaac7304-468f-403f-b07e-158a0bb23407" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Q2(a)+2(b)+4:</strong> Binary Subtraction with 2&#x27;s Complement (both positive and negative results)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="a49a128f-1587-422f-90b5-9ce7e3abdc05" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Q3:</strong> Keyboard layouts (QWERTY, DVORAK, AZERTY) and sections</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="74f07aa5-9df8-4d56-85e0-d6f2b2c690c4" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Q3:</strong> Mouse types (Mechanical, Optical, Laser, Wireless, Trackball, Gaming)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2bb1f870-43d1-4d42-88cf-a28270e09bf2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Q3:</strong> Monitor types (CRT, LCD, LED, OLED) and comparison</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="c2f9044a-8fce-44b8-b282-72cc2eb61613" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Q3:</strong> Modem — purpose, types, and why it is a peripheral</span><div class="indented"></div></li></ul></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
