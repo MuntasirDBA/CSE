@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSE 1205 — Mid Term Suggestion Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --surface2: #f0ede6;
+    --border: #e0dbd1;
+    --text: #1a1814;
+    --muted: #6b6660;
+    --accent: #2d5a3d;
+    --accent2: #1a3a6b;
+    --accent3: #7a2c1e;
+    --accent4: #5a3a7a;
+    --accent5: #1a5a5a;
+    --tag-bg: #e8f0eb;
+    --tag-text: #1e4a2a;
+    --yellow: #fdf3d0;
+    --yellow-border: #d4a017;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .page-header {
+    background: var(--text);
+    color: #f7f5f0;
+    padding: 3rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: 'CSE';
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    font-family: 'Lora', serif;
+    font-size: 180px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .page-header h1 { font-family: 'Lora', serif; font-size: 2.2rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .page-header p { color: #aaa89e; font-size: 0.9rem; font-weight: 300; }
+  .nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .nav a:hover { background: var(--text); color: #fff; border-color: var(--text); }
+  .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  .section { margin-bottom: 3rem; }
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    border-left: 4px solid var(--accent);
+    padding-left: 0.75rem;
+  }
+  .section-title.blue { border-color: var(--accent2); }
+  .section-title.red { border-color: var(--accent3); }
+  .section-title.purple { border-color: var(--accent4); }
+  .section-title.teal { border-color: var(--accent5); }
+  .section-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; padding-left: 1rem; }
+
+  .topic {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .topic-head {
+    padding: 0.75rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid transparent;
+    transition: background 0.2s;
+  }
+  .topic-head:hover { background: var(--surface2); }
+  .topic-head.open { border-bottom-color: var(--border); background: var(--surface2); }
+  .topic-head h3 { font-size: 0.95rem; font-weight: 500; }
+  .topic-head .badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    white-space: nowrap;
+    margin-left: 8px;
+    flex-shrink: 0;
+  }
+  .badge.blue { background: #dde8f8; color: #1a3a6b; }
+  .badge.red { background: #f7e4e0; color: #7a2c1e; }
+  .badge.purple { background: #ede5f5; color: #4a2a6a; }
+  .badge.teal { background: #ddf0f0; color: #0e4040; }
+  .badge.amber { background: #fdf3d0; color: #7a5000; }
+  .arrow { font-size: 12px; color: var(--muted); transition: transform 0.25s; flex-shrink: 0; }
+  .arrow.open { transform: rotate(180deg); }
+  .topic-body { padding: 1.2rem; display: none; }
+  .topic-body.open { display: block; }
+
+  .def {
+    background: var(--yellow);
+    border-left: 3px solid var(--yellow-border);
+    padding: 0.65rem 1rem;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 1rem;
+    font-size: 0.92rem;
+  }
+  .def strong { font-weight: 600; }
+  .points { list-style: none; margin-bottom: 1rem; }
+  .points li {
+    padding: 0.4rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .points li:last-child { border-bottom: none; }
+  .points li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .sub-head { font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 1rem 0 0.4rem; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+  .mini-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.65rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  .mini-card strong { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 2px; }
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  table.compare th {
+    background: var(--text);
+    color: #f7f5f0;
+    padding: 7px 10px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.8rem;
+  }
+  table.compare td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table.compare tr:nth-child(even) td { background: var(--surface2); }
+  .code-block {
+    background: #1a1814;
+    color: #d4c9a8;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .code-block .comment { color: #7a7060; }
+  .code-block .hl { color: #f0c060; }
+  .step-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.88rem;
+  }
+  .step-box .step-num {
+    display: inline-block;
+    background: var(--text);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .note {
+    background: #e8f0eb;
+    border: 1px solid #b8d4be;
+    border-radius: 8px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.85rem;
+    color: #1e4a2a;
+    margin-bottom: 0.8rem;
+  }
+  .note.blue { background: #dde8f8; border-color: #a0b8e0; color: #1a3a6b; }
+  .note.red { background: #f7e4e0; border-color: #d4a090; color: #7a2c1e; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+  .hierarchy-row {
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .checklist { list-style: none; margin-bottom: 1rem; }
+  .checklist li {
+    padding: 0.45rem 0;
+    padding-left: 1.6rem;
+    position: relative;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '☐';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  @media(max-width: 600px) {
+    .grid2 { grid-template-columns: 1fr; }
+    .page-header h1 { font-size: 1.6rem; }
+    .container { padding: 1.5rem 1rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>CSE 1205 — Mid Term Suggestion Notes</h1>
+  <p>Introduction to Computer Science &nbsp;|&nbsp; Bangladesh Army University of Science and Technology &nbsp;|&nbsp; Md. Muntasir Hossain</p>
+</div>
+
+<nav class="nav">
+  <a href="#q1">Q.1 Memory Systems</a>
+  <a href="#q2">Q.2 Number Systems</a>
+  <a href="#q3">Q.3 I/O Devices</a>
+  <a href="#q4">Q.4 Computers &amp; Society</a>
+  <a href="#checklist">✓ Checklist</a>
+  <a href="/CSE 1205 — Mid Term Suggestion Notes.html">Alternative</a>
+  <a href="">Download PDF</a>
+</nav>
+
+<div class="container">
+
+<!-- ==================== Q1 MEMORY ==================== -->
+<div id="q1" class="section">
+  <div class="section-label">Question 1</div>
+  <div class="section-title">Memory Systems</div>
+  <div class="section-desc">Primary Memory, Secondary Memory, RAM (SRAM vs DRAM), ROM types, Cache levels, Memory Hierarchy</div>
+
+  <!-- Primary Memory -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>1.1 — Primary Memory (Main Memory)</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge">Definition + Types</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> Primary memory is the computer's main internal memory that the CPU accesses <strong>directly</strong>. It is volatile (loses data when power is off) or non-volatile, and is faster but smaller than secondary memory.</div>
+      <div class="sub-head">Key Characteristics</div>
+      <ul class="points">
+        <li>Directly accessible by the CPU</li>
+        <li>Faster access speed compared to secondary memory</li>
+        <li>Limited in capacity</li>
+        <li>More expensive per byte</li>
+        <li>Includes <strong>RAM</strong> and <strong>ROM</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Secondary Memory -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>1.2 — Secondary Memory (Auxiliary Memory)</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge blue">Non-Volatile</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> Secondary memory is <strong>non-volatile</strong> storage used for permanent data retention. The CPU cannot access it directly — data must first be loaded into primary memory.</div>
+      <div class="sub-head">Key Characteristics</div>
+      <ul class="points">
+        <li>Non-volatile (data persists without power)</li>
+        <li>Larger storage capacity</li>
+        <li>Slower access speed</li>
+        <li>Cheaper per byte</li>
+        <li>Examples: HDD, SSD, CD/DVD, USB Flash Drive, Magnetic Tape</li>
+      </ul>
+      <div class="sub-head">Comparison: Primary vs Secondary Memory</div>
+      <table class="compare">
+        <tr><th>Feature</th><th>Primary Memory</th><th>Secondary Memory</th></tr>
+        <tr><td>Volatility</td><td>Volatile (RAM) / Non-volatile (ROM)</td><td>Non-volatile</td></tr>
+        <tr><td>Speed</td><td>Very fast</td><td>Slower</td></tr>
+        <tr><td>Capacity</td><td>Small (GBs)</td><td>Large (TBs)</td></tr>
+        <tr><td>Cost</td><td>Expensive per byte</td><td>Cheap per byte</td></tr>
+        <tr><td>CPU Access</td><td>Direct</td><td>Indirect (via primary memory)</td></tr>
+        <tr><td>Examples</td><td>RAM, ROM, Cache</td><td>HDD, SSD, USB, DVD</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- RAM -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>1.3 — RAM (Random Access Memory)</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge amber">Volatile</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> RAM is <strong>volatile</strong> primary memory used to store data and instructions currently being processed by the CPU. It allows <strong>read and write</strong> operations.</div>
+      <div class="sub-head">Types of RAM: SRAM vs DRAM</div>
+      <table class="compare">
+        <tr><th>Feature</th><th>SRAM (Static RAM)</th><th>DRAM (Dynamic RAM)</th></tr>
+        <tr><td>Storage Element</td><td>Flip-flop circuits</td><td>Capacitors</td></tr>
+        <tr><td>Speed</td><td>Faster</td><td>Slower</td></tr>
+        <tr><td>Refresh Needed</td><td>No</td><td>Yes (periodic)</td></tr>
+        <tr><td>Cost</td><td>Expensive</td><td>Cheaper</td></tr>
+        <tr><td>Density</td><td>Low</td><td>High</td></tr>
+        <tr><td>Use</td><td>Cache memory</td><td>Main memory</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ROM -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>1.4 — ROM (Read-Only Memory)</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge blue">Non-Volatile</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> ROM is <strong>non-volatile</strong> primary memory that stores permanent instructions (e.g., BIOS/firmware). Data is written during manufacturing and <strong>cannot be easily modified</strong>.</div>
+      <div class="sub-head">Types of ROM</div>
+      <table class="compare">
+        <tr><th>Type</th><th>Full Form</th><th>Description</th></tr>
+        <tr><td><strong>PROM</strong></td><td>Programmable ROM</td><td>Can be programmed <strong>once</strong> after manufacturing using a special device</td></tr>
+        <tr><td><strong>EPROM</strong></td><td>Erasable Programmable ROM</td><td>Can be erased using <strong>ultraviolet (UV) light</strong> and reprogrammed</td></tr>
+        <tr><td><strong>EEPROM</strong></td><td>Electrically Erasable PROM</td><td>Can be erased and reprogrammed <strong>electrically</strong>, byte by byte</td></tr>
+        <tr><td><strong>Flash Memory</strong></td><td>Type of EEPROM</td><td>Erased and written in <strong>blocks</strong>; used in USB drives, SSDs</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Cache -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>1.5 — Cache Memory</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge red">Fastest Memory</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> Cache is a <strong>very fast, small</strong> memory located between the CPU and main memory (RAM). It stores <strong>frequently accessed data and instructions</strong> to speed up processing.</div>
+      <div class="sub-head">How Cache Works</div>
+      <ul class="points">
+        <li>When the CPU needs data, it first checks the cache — this is a <strong>cache hit</strong></li>
+        <li>If not found — <strong>cache miss</strong> — it fetches from RAM and copies to cache</li>
+        <li>Principle: <strong>Locality of Reference</strong> — programs tend to access the same data/instructions repeatedly</li>
+      </ul>
+      <div class="sub-head">Levels of Cache</div>
+      <table class="compare">
+        <tr><th>Level</th><th>Location</th><th>Size</th><th>Speed</th></tr>
+        <tr><td><strong>L1 Cache</strong></td><td>Inside CPU core</td><td>32–128 KB</td><td>Fastest</td></tr>
+        <tr><td><strong>L2 Cache</strong></td><td>Inside or near CPU</td><td>256 KB – 1 MB</td><td>Fast</td></tr>
+        <tr><td><strong>L3 Cache</strong></td><td>Shared among cores</td><td>2–64 MB</td><td>Slower than L1/L2</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Memory Hierarchy -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>1.6 — Memory Hierarchy</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge purple">Diagram Topic</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> The memory hierarchy organizes storage by <strong>speed, cost, and capacity</strong>. Faster memory is smaller and more expensive; slower memory is larger and cheaper.</div>
+      <div class="sub-head">Hierarchy (Top = Fastest, Bottom = Slowest)</div>
+      <div style="margin-bottom:1rem;">
+        <div class="hierarchy-row" style="background:#1a1814;">① CPU Registers — Fastest, smallest, inside CPU</div>
+        <div class="hierarchy-row" style="background:#2d5a3d;">② L1 Cache — Very fast, very small (32–128 KB)</div>
+        <div class="hierarchy-row" style="background:#1a5a5a;">③ L2 Cache — Fast, small (256 KB – 1 MB)</div>
+        <div class="hierarchy-row" style="background:#1a3a6b;">④ L3 Cache — Moderate speed, moderate size (2–64 MB)</div>
+        <div class="hierarchy-row" style="background:#5a3a7a;">⑤ RAM (Main Memory) — Moderate speed, moderate capacity (GBs)</div>
+        <div class="hierarchy-row" style="background:#7a2c1e;">⑥ SSD / HDD (Secondary Storage) — Slow, large capacity (TBs)</div>
+        <div class="hierarchy-row" style="background:#4a3a2a;">⑦ Magnetic Tape / Optical Discs (Tertiary) — Slowest, largest, cheapest</div>
+      </div>
+      <div class="note"><strong>Key Principle:</strong> As we move <strong>down</strong> the hierarchy → Speed ↓, Capacity ↑, Cost per byte ↓, Access time ↑</div>
+    </div>
+  </div>
+
+</div>
+<!-- END Q1 -->
+
+<!-- ==================== Q2 NUMBER SYSTEMS ==================== -->
+<div id="q2" class="section">
+  <div class="section-label">Question 2(a) + 2(b) + 4</div>
+  <div class="section-title blue">Number Systems &amp; Conversions</div>
+  <div class="section-desc">Decimal ↔ Binary ↔ Octal ↔ Hexadecimal, Binary Arithmetic, 2's Complement</div>
+
+  <!-- Number System Overview -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>2.1 — Number System Bases</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge blue">Basics</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Key concept:</strong> Computers use <strong>binary (base-2)</strong>. Understanding conversions between Decimal (base-10), Binary (base-2), Octal (base-8), and Hexadecimal (base-16) is essential.</div>
+      <table class="compare">
+        <tr><th>System</th><th>Base</th><th>Digits Used</th><th>Example</th></tr>
+        <tr><td><strong>Decimal</strong></td><td>10</td><td>0–9</td><td>(25)₁₀</td></tr>
+        <tr><td><strong>Binary</strong></td><td>2</td><td>0, 1</td><td>(11001)₂</td></tr>
+        <tr><td><strong>Octal</strong></td><td>8</td><td>0–7</td><td>(31)₈</td></tr>
+        <tr><td><strong>Hexadecimal</strong></td><td>16</td><td>0–9, A–F</td><td>(19)₁₆</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Decimal to Binary -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>2.2 — Decimal to Binary Conversion</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge blue">Method</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Method:</strong> Repeated division by 2, record remainders <strong>bottom-to-top</strong>.</div>
+      <div class="sub-head">Example: Convert (25)₁₀ to Binary</div>
+      <table class="compare">
+        <tr><th>Division</th><th>Quotient</th><th>Remainder</th></tr>
+        <tr><td>25 ÷ 2</td><td>12</td><td>1</td></tr>
+        <tr><td>12 ÷ 2</td><td>6</td><td>0</td></tr>
+        <tr><td>6 ÷ 2</td><td>3</td><td>0</td></tr>
+        <tr><td>3 ÷ 2</td><td>1</td><td>1</td></tr>
+        <tr><td>1 ÷ 2</td><td>0</td><td>1</td></tr>
+      </table>
+      <div class="note"><strong>Result: (25)₁₀ = (11001)₂</strong> ← Read remainders bottom to top</div>
+    </div>
+  </div>
+
+  <!-- Octal to Hexadecimal -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>2.3 — Octal to Hexadecimal (via Binary)</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge blue">3-step Method</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Method:</strong> Octal → Binary → Hexadecimal</div>
+      <div class="step-box"><span class="step-num">Step 1</span> Convert each octal digit to <strong>3-bit binary</strong></div>
+      <div class="step-box"><span class="step-num">Step 2</span> Group binary digits into sets of <strong>4 from right</strong> (pad left with zeros if needed)</div>
+      <div class="step-box"><span class="step-num">Step 3</span> Convert each 4-bit group to hexadecimal</div>
+      <div class="sub-head">Example: Convert (725)₈ to Hexadecimal</div>
+      <div class="code-block">Octal digits → 3-bit binary:
+  7 = 111,  2 = 010,  5 = 101
+Combined binary: <span class="hl">111 010 101</span>
+Regroup into 4 bits: <span class="hl">0001 1101 0101</span>
+Convert each group:
+  0001 = 1,  1101 = D,  0101 = 5
+<span class="hl">Result: (725)₈ = (1D5)₁₆</span></div>
+      <div class="sub-head">Example: Convert (374)₈ to Hexadecimal</div>
+      <div class="code-block">3 = 011,  7 = 111,  4 = 100
+Combined: 011 111 100
+Regroup: 0000 1111 1100
+0000 = 0,  1111 = F,  1100 = C
+<span class="hl">Result: (374)₈ = (0FC)₁₆ = (FC)₁₆</span></div>
+    </div>
+  </div>
+
+  <!-- Hex to Octal -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>2.4 — Hexadecimal to Octal (via Binary)</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge blue">3-step Method</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Method:</strong> Hexadecimal → Binary → Octal</div>
+      <div class="step-box"><span class="step-num">Step 1</span> Convert each hex digit to <strong>4-bit binary</strong></div>
+      <div class="step-box"><span class="step-num">Step 2</span> Regroup binary digits into sets of <strong>3 from right</strong></div>
+      <div class="step-box"><span class="step-num">Step 3</span> Convert each 3-bit group to octal</div>
+      <div class="sub-head">Example: Convert (1F4)₁₆ to Octal</div>
+      <div class="code-block">Hex digits → 4-bit binary:
+  1 = 0001,  F = 1111,  4 = 0100
+Combined: <span class="hl">0001 1111 0100</span>
+Regroup into 3 bits: <span class="hl">000 111 110 100</span>
+Convert each group:
+  000 = 0,  111 = 7,  110 = 6,  100 = 4
+<span class="hl">Result: (1F4)₁₆ = (0764)₈ = (764)₈</span></div>
+    </div>
+  </div>
+
+  <!-- Binary to Octal -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>2.5 — Binary to Octal Conversion</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge teal">Group of 3</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Method:</strong> Group binary digits into sets of <strong>3 from right</strong>, convert each group to its octal digit.</div>
+      <div class="sub-head">Example: Convert (110101011)₂ to Octal</div>
+      <div class="code-block">Binary: 110 101 011
+Group:  110 = 6,  101 = 5,  011 = 3
+<span class="hl">Result: (110101011)₂ = (653)₈</span></div>
+    </div>
+  </div>
+
+  <!-- Hex to Decimal -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>2.6 — Hexadecimal to Decimal</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge teal">Positional</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Method:</strong> Multiply each digit by its positional power of 16, then sum all values.</div>
+      <div class="sub-head">Example: Convert (2A3)₁₆ to Decimal</div>
+      <div class="code-block">2 × 16² = 2 × 256  = 512
+A × 16¹ = 10 × 16 = 160
+3 × 16⁰ = 3 × 1   =   3
+           Total = <span class="hl">675</span>
+<span class="hl">Result: (2A3)₁₆ = (675)₁₀</span></div>
+    </div>
+  </div>
+
+  <!-- Binary Multiplication -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>2.7 — Binary Multiplication</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge red">Important</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> Binary multiplication follows the same principle as decimal multiplication but only uses 0s and 1s. Rules: 0×0=0, 0×1=0, 1×0=0, <strong>1×1=1</strong>.</div>
+      <div class="sub-head">Example: Multiply (1101)₂ × (1011)₂ → i.e., 13 × 11 = 143</div>
+      <div class="code-block">      1 1 0 1    (Multiplicand = 13)
+    × 1 0 1 1    (Multiplier  = 11)
+    ---------
+      1 1 0 1    (1101 × 1)
+    1 1 0 1 0    (1101 × 1, shifted left 1)
+  0 0 0 0 0 0    (1101 × 0, shifted left 2)
+1 1 0 1 0 0 0    (1101 × 1, shifted left 3)
+--------------
+<span class="hl">1 0 0 0 1 1 1 1 = (143)₁₀  ✓  (13 × 11 = 143)</span></div>
+    </div>
+  </div>
+
+  <!-- Binary Division -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>2.8 — Binary Division</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge red">Important</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> Binary division works like long division in decimal, using <strong>repeated subtraction and shifting</strong>.</div>
+      <div class="sub-head">Example: Divide (10110)₂ ÷ (110)₂ → i.e., 22 ÷ 6</div>
+      <div class="code-block">         0 0 1 1  ← Quotient (= 3)
+         --------
+110 )  1 0 1 1 0
+     - 0 0 0       (110 doesn't fit into 1 or 10)
+       -------
+         1 0 1 1   (bring down)
+       - 1 1 0
+         -----
+           1 0 1 0
+         - 1 1 0
+           -----
+           <span class="hl">1 0 0</span>  ← Remainder (= 4)
+
+<span class="hl">Result: Quotient = (11)₂ = 3,  Remainder = (100)₂ = 4</span>
+Verification: 22 ÷ 6 = 3 remainder 4  ✓</div>
+    </div>
+  </div>
+
+  <!-- 2's Complement -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>2.9 — Binary Subtraction with 2's Complement</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge red">Very Important</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> 2's Complement is the most common method for representing negative numbers and performing subtraction in computers.<br><br><strong>Formula:</strong> 2's Complement = 1's Complement + 1<br><strong>1's Complement</strong> = Flip all bits (0→1, 1→0)</div>
+      <div class="sub-head">Steps for A − B using 2's Complement</div>
+      <div class="step-box"><span class="step-num">Step 1</span> Find the <strong>1's complement</strong> of B (flip all bits)</div>
+      <div class="step-box"><span class="step-num">Step 2</span> Add 1 to get the <strong>2's complement</strong> of B</div>
+      <div class="step-box"><span class="step-num">Step 3</span> Add A + (2's complement of B)</div>
+      <div class="step-box"><span class="step-num">Step 4</span> If <strong>carry out</strong> → result is <strong>positive</strong> (discard carry). If <strong>no carry</strong> → result is <strong>negative</strong> (take 2's complement of result)</div>
+      <div class="sub-head">Example 1: (1010)₂ − (0111)₂ → i.e., 10 − 7 = 3 (Positive result)</div>
+      <div class="code-block">1's complement of 0111 = <span class="hl">1000</span>
+2's complement       = 1000 + 1 = <span class="hl">1001</span>
+Add:  1010
+    + 1001
+    ------
+    <span class="hl">1</span> 0011  ← carry out = 1 → result is POSITIVE
+Discard carry → <span class="hl">Result: (0011)₂ = (3)₁₀  ✓</span></div>
+      <div class="sub-head">Example 2: (0100)₂ − (0111)₂ → i.e., 4 − 7 = −3 (Negative result)</div>
+      <div class="code-block">1's complement of 0111 = <span class="hl">1000</span>
+2's complement       = 1000 + 1 = <span class="hl">1001</span>
+Add:  0100
+    + 1001
+    ------
+      <span class="hl">1101</span>  ← no carry → result is NEGATIVE
+Take 2's complement of 1101:
+  1's comp = 0010
+  + 1      = <span class="hl">0011</span>
+<span class="hl">Result: −(0011)₂ = −(3)₁₀  ✓</span></div>
+    </div>
+  </div>
+
+</div>
+<!-- END Q2 -->
+
+<!-- ==================== Q3 INPUT/OUTPUT ==================== -->
+<div id="q3" class="section">
+  <div class="section-label">Question 3</div>
+  <div class="section-title red">Input / Output Devices</div>
+  <div class="section-desc">Keyboard layouts, Mouse types, Monitor types, Modem</div>
+
+  <!-- Keyboard -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>3.1 — Keyboard Layout</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge red">Input Device</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> A keyboard is the most common <strong>input device</strong> for entering text, numbers, and commands.</div>
+      <div class="sub-head">Major Keyboard Layouts</div>
+      <div class="grid2">
+        <div class="mini-card"><strong>QWERTY Layout</strong>Most widely used worldwide. Named after first 6 top-row letters. Designed by <strong>Christopher Latham Sholes</strong> in the 1870s for typewriters. Reduces jamming by separating common letter pairs.</div>
+        <div class="mini-card"><strong>DVORAK Layout</strong>Designed by <strong>Dr. August Dvorak</strong> in 1936. Optimized for speed and efficiency — most common letters placed on the home row. Less popular due to QWERTY dominance.</div>
+        <div class="mini-card"><strong>AZERTY Layout</strong>Used primarily in <strong>France and Belgium</strong>. Variation of QWERTY adapted for French language characters.</div>
+        <div class="mini-card"><strong>QWERTZ Layout</strong>Used in <strong>Germany, Austria, Switzerland</strong>. Y and Z positions are swapped compared to QWERTY.</div>
+      </div>
+      <div class="sub-head">Sections of a Standard Keyboard</div>
+      <table class="compare">
+        <tr><th>Section</th><th>Keys</th><th>Purpose</th></tr>
+        <tr><td>Alphanumeric Keys</td><td>A–Z, 0–9, symbols</td><td>Typing text and numbers</td></tr>
+        <tr><td>Function Keys</td><td>F1 – F12</td><td>Shortcuts for specific operations</td></tr>
+        <tr><td>Navigation Keys</td><td>Arrow keys, Home, End, PgUp, PgDn</td><td>Moving cursor and scrolling</td></tr>
+        <tr><td>Numeric Keypad</td><td>0–9, +, −, *, /, Enter</td><td>Quick numeric data entry</td></tr>
+        <tr><td>Modifier Keys</td><td>Shift, Ctrl, Alt, Caps Lock</td><td>Modify behavior of other keys</td></tr>
+        <tr><td>Special Keys</td><td>Enter, Backspace, Tab, Esc, Space</td><td>Control and editing functions</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mouse -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>3.2 — Mouse Types</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge red">Input Device</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> A mouse is a <strong>pointing input device</strong> that detects two-dimensional motion relative to a surface and translates it into cursor movement on screen.</div>
+      <div class="sub-head">Types of Mouse</div>
+      <table class="compare">
+        <tr><th>Type</th><th>Technology</th><th>Key Features</th></tr>
+        <tr><td><strong>Mechanical (Ball)</strong></td><td>Rubber ball + rollers</td><td>Requires mouse pad. Collects dust, needs cleaning. Now obsolete.</td></tr>
+        <tr><td><strong>Optical Mouse</strong></td><td>LED + optical sensor (photodiode)</td><td>No moving parts — more reliable. Works on most surfaces (not glass). Most common today.</td></tr>
+        <tr><td><strong>Laser Mouse</strong></td><td>Laser beam tracking</td><td>Higher precision (higher DPI). Works on more surfaces including glass. Preferred by gamers and designers.</td></tr>
+        <tr><td><strong>Wireless Mouse</strong></td><td>Bluetooth or RF (USB dongle)</td><td>No cable — more freedom. Requires batteries or charging.</td></tr>
+        <tr><td><strong>Trackball Mouse</strong></td><td>Stationary ball (rotated by thumb)</td><td>Body doesn't move — requires less desk space. Used in specialized workstations.</td></tr>
+        <tr><td><strong>Gaming Mouse</strong></td><td>High DPI optical/laser</td><td>Programmable buttons, adjustable weights, ergonomic design.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Monitor -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>3.3 — Monitor Types and Comparison</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge teal">Output Device</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> A monitor (display screen) is the primary <strong>output device</strong> for visual information.</div>
+      <div class="sub-head">Types of Monitors</div>
+      <div class="grid2">
+        <div class="mini-card"><strong>CRT (Cathode Ray Tube)</strong>Oldest technology. Uses <strong>electron beams</strong> on phosphor dots. Bulky, heavy, high power. Now largely <strong>obsolete</strong>.</div>
+        <div class="mini-card"><strong>LCD (Liquid Crystal Display)</strong>Uses <strong>liquid crystals</strong> + backlight (LED/CCFL). Thin, lightweight, energy-efficient. Most common in laptops and budget monitors.</div>
+        <div class="mini-card"><strong>LED Monitor</strong>A type of LCD with <strong>LED backlighting</strong>. Better contrast, brightness, efficiency than standard LCD. Most common monitor type today.</div>
+        <div class="mini-card"><strong>OLED (Organic LED)</strong>Each pixel produces its <strong>own light</strong> — no backlight. Perfect blacks. Excellent contrast. Expensive, risk of burn-in.</div>
+        <div class="mini-card"><strong>AMOLED</strong>Advanced OLED with <strong>active matrix</strong> for faster pixel response. Used in smartphones and premium displays.</div>
+        <div class="mini-card"><strong>Plasma Display</strong>Uses ionized gas to produce light. Good color, wide viewing angle. Now mostly replaced by LED/OLED.</div>
+      </div>
+      <div class="sub-head">Comparison Table</div>
+      <table class="compare">
+        <tr><th>Feature</th><th>CRT</th><th>LCD</th><th>LED</th><th>OLED</th></tr>
+        <tr><td>Thickness</td><td>Very bulky</td><td>Thin</td><td>Thinner</td><td>Thinnest</td></tr>
+        <tr><td>Weight</td><td>Heavy</td><td>Light</td><td>Lighter</td><td>Lightest</td></tr>
+        <tr><td>Power Use</td><td>High</td><td>Moderate</td><td>Low</td><td>Very low</td></tr>
+        <tr><td>Contrast</td><td>Moderate</td><td>Moderate</td><td>Good</td><td>Excellent</td></tr>
+        <tr><td>Black Level</td><td>Good</td><td>Poor (backlight bleed)</td><td>Better</td><td>Perfect (true black)</td></tr>
+        <tr><td>Cost</td><td>Obsolete</td><td>Affordable</td><td>Moderate</td><td>Expensive</td></tr>
+        <tr><td>Lifespan</td><td>Long</td><td>Long</td><td>Long</td><td>Shorter (burn-in risk)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modem -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>3.4 — Modem: Need &amp; Why It Is a Peripheral</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge purple">I/O + Peripheral</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> A <strong>modem (Modulator-Demodulator)</strong> is a device that converts digital signals from a computer into analog signals for transmission over telephone/cable lines, and vice versa.</div>
+      <div class="sub-head">What Does a Modem Do?</div>
+      <ul class="points">
+        <li><strong>Modulation:</strong> Converts digital data → analog signal (for sending)</li>
+        <li><strong>Demodulation:</strong> Converts analog signal → digital data (for receiving)</li>
+        <li>Enables computers to communicate over networks originally designed for analog signals</li>
+      </ul>
+      <div class="sub-head">Why Do We Need a Modem?</div>
+      <ul class="points">
+        <li><strong>Internet Access</strong> — Connects your computer to your Internet Service Provider (ISP)</li>
+        <li><strong>Data Transmission</strong> — Enables sending/receiving data over telephone or cable lines</li>
+        <li><strong>Signal Conversion</strong> — Bridges the gap between digital computers and analog communication infrastructure</li>
+        <li><strong>Remote Communication</strong> — Enables email, web browsing, video calls, file transfer</li>
+      </ul>
+      <div class="sub-head">Types of Modems</div>
+      <table class="compare">
+        <tr><th>Type</th><th>Medium</th><th>Speed</th></tr>
+        <tr><td><strong>Dial-up Modem</strong></td><td>Telephone line</td><td>Very slow (up to 56 Kbps)</td></tr>
+        <tr><td><strong>DSL Modem</strong></td><td>Telephone line (digital)</td><td>Up to 100+ Mbps</td></tr>
+        <tr><td><strong>Cable Modem</strong></td><td>Cable TV line</td><td>High speed</td></tr>
+        <tr><td><strong>Fiber Modem (ONT)</strong></td><td>Fiber optic</td><td>Fastest</td></tr>
+        <tr><td><strong>Wireless/Cellular</strong></td><td>Mobile networks (3G/4G/5G)</td><td>Varies</td></tr>
+      </table>
+      <div class="sub-head">Why Is a Modem a Peripheral Device?</div>
+      <div class="note">A <strong>peripheral device</strong> is any external or auxiliary device that connects to and works with a computer but is <strong>not part of the core computer system</strong> (CPU, motherboard, primary memory).</div>
+      <ul class="points">
+        <li><strong>Not essential for basic operation</strong> — A computer can function (process data, run programs) without a modem</li>
+        <li><strong>External connectivity</strong> — It connects to the computer via USB, Ethernet, or PCIe slot</li>
+        <li><strong>Input/Output role</strong> — Acts as both an input device (receiving data from internet) and output device (sending data)</li>
+        <li><strong>Removable/Replaceable</strong> — Can be added, removed, or upgraded independently</li>
+        <li><strong>Auxiliary function</strong> — Its purpose (internet connectivity) is supplementary to the computer's core processing tasks</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+<!-- END Q3 -->
+
+<!-- ==================== Q4 TYPES + SOCIAL IMPACT ==================== -->
+<div id="q4" class="section">
+  <div class="section-label">Question 2(b) + 4</div>
+  <div class="section-title purple">Types of Computers &amp; Social Impact</div>
+  <div class="section-desc">Classification of computers by size/purpose/data handling, and social impact of computing</div>
+
+  <!-- Types of Computers -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>4.1 — Types of Computers</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge purple">Classification</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> Computers are classified based on <strong>size, purpose, and data handling</strong>.</div>
+      <div class="sub-head">A. Based on Size</div>
+      <table class="compare">
+        <tr><th>Type</th><th>Size / Power</th><th>Examples &amp; Uses</th></tr>
+        <tr><td><strong>Supercomputer</strong></td><td>Most powerful</td><td>Weather forecasting, nuclear research, scientific simulations. Ex: IBM Summit, Fugaku</td></tr>
+        <tr><td><strong>Mainframe</strong></td><td>Large, multi-user</td><td>Banking, airlines, government. Supports thousands of users. Ex: IBM z15</td></tr>
+        <tr><td><strong>Minicomputer (Mid-range)</strong></td><td>Smaller than mainframe</td><td>Small businesses, departments. Multi-user. Ex: PDP-11</td></tr>
+        <tr><td><strong>Microcomputer (PC)</strong></td><td>Small, single user</td><td>Desktops, laptops, tablets, smartphones. Most common.</td></tr>
+        <tr><td><strong>Workstation</strong></td><td>High-performance PC</td><td>Engineering, 3D animation, design, scientific work</td></tr>
+      </table>
+      <div class="sub-head">B. Based on Purpose</div>
+      <div class="grid2">
+        <div class="mini-card"><strong>General-Purpose Computer</strong>Can perform a wide variety of tasks. Example: desktops, laptops</div>
+        <div class="mini-card"><strong>Special-Purpose Computer</strong>Designed for a specific task. Example: traffic signal controller, ATM, washing machine</div>
+      </div>
+      <div class="sub-head">C. Based on Data Handling</div>
+      <div class="grid2">
+        <div class="mini-card"><strong>Analog Computer</strong>Processes <strong>continuous data</strong>. Examples: thermometer, speedometer, analog clock</div>
+        <div class="mini-card"><strong>Digital Computer</strong>Processes <strong>discrete/binary data</strong> (0s and 1s). Examples: PCs, laptops, smartphones</div>
+        <div class="mini-card"><strong>Hybrid Computer</strong>Combines <strong>analog and digital</strong>. Examples: hospital ICU monitors, ECG machines</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Impact -->
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>4.2 — Social Impact of Computers</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge purple">Positive &amp; Negative</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="def"><strong>Definition:</strong> Computers have transformed virtually every aspect of modern society — both positively and negatively.</div>
+      <div class="sub-head">✅ Positive Impacts</div>
+      <ul class="points">
+        <li><strong>Education</strong> — E-learning, online courses, digital libraries, virtual classrooms make education accessible globally</li>
+        <li><strong>Healthcare</strong> — Computerized diagnostics, telemedicine, electronic health records, robotic surgery improve patient care</li>
+        <li><strong>Communication</strong> — Email, social media, video conferencing, instant messaging enable instant global communication</li>
+        <li><strong>Business &amp; Economy</strong> — E-commerce, online banking, automated accounting, digital marketing increase productivity</li>
+        <li><strong>Entertainment</strong> — Video games, streaming, digital art, virtual reality create new creative industries</li>
+        <li><strong>Science &amp; Research</strong> — Simulations, data analysis, genome mapping accelerate scientific discoveries</li>
+        <li><strong>Government</strong> — E-governance, digital ID systems, online tax filing make services faster and transparent</li>
+      </ul>
+      <div class="sub-head">❌ Negative Impacts</div>
+      <ul class="points">
+        <li><strong>Unemployment</strong> — Automation replacing human jobs in manufacturing, data entry, customer service</li>
+        <li><strong>Privacy Concerns</strong> — Data breaches, surveillance, identity theft threaten individual privacy</li>
+        <li><strong>Cybercrime</strong> — Hacking, phishing, ransomware cause billions in losses annually</li>
+        <li><strong>Health Issues</strong> — Eye strain, poor posture, screen addiction, sleep disorders from excessive use</li>
+        <li><strong>Digital Divide</strong> — Unequal access to technology across socioeconomic groups widens inequality</li>
+        <li><strong>Social Isolation</strong> — Reduced face-to-face interaction and weakened personal relationships</li>
+        <li><strong>Misinformation</strong> — Spread of fake news and propaganda rapidly through social media</li>
+      </ul>
+      <div class="note">📝 <strong>Exam Tip:</strong> Write at least <strong>4 positive</strong> and <strong>4 negative</strong> impacts. Always give one specific example per point for full marks.</div>
+    </div>
+  </div>
+
+</div>
+<!-- END Q4 -->
+
+<!-- ==================== QUICK REVISION CHECKLIST ==================== -->
+<div id="checklist" class="section">
+  <div class="section-label">Quick Revision</div>
+  <div class="section-title teal">Revision Checklist</div>
+  <div class="section-desc">Go through each item before your exam</div>
+
+  <div class="topic">
+    <div class="topic-head" onclick="toggle(this)">
+      <h3>✓ Full Checklist</h3>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge teal">All Topics</span>
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="sub-head">Question 1 — Memory Systems</div>
+      <ul class="checklist">
+        <li>Primary vs Secondary Memory — definitions, differences, comparison table</li>
+        <li>RAM — definition, types (SRAM vs DRAM), comparison table</li>
+        <li>ROM — definition, 4 types (PROM, EPROM, EEPROM, Flash)</li>
+        <li>Cache Memory — definition, how it works (hit/miss), L1/L2/L3 levels</li>
+        <li>Memory Hierarchy — all 7 levels, top-to-bottom principle</li>
+      </ul>
+      <div class="sub-head">Question 2(a) + 2(b) + 4 — Number Systems</div>
+      <ul class="checklist">
+        <li>Decimal → Binary (repeated division by 2)</li>
+        <li>Octal → Hexadecimal (via 3-bit binary → regroup into 4-bit)</li>
+        <li>Hexadecimal → Octal (via 4-bit binary → regroup into 3-bit)</li>
+        <li>Binary → Octal (group into 3 from right)</li>
+        <li>Hexadecimal → Decimal (positional value × powers of 16)</li>
+        <li>Binary Multiplication — long method with partial products</li>
+        <li>Binary Division — long division method with quotient &amp; remainder</li>
+        <li>Binary Subtraction with 2's Complement — both positive &amp; negative results</li>
+      </ul>
+      <div class="sub-head">Question 3 — I/O Devices</div>
+      <ul class="checklist">
+        <li>Keyboard layouts — QWERTY, DVORAK, AZERTY (designers, origins, use)</li>
+        <li>Keyboard sections — 6 sections and their purpose</li>
+        <li>Mouse types — Mechanical, Optical, Laser, Wireless, Trackball, Gaming</li>
+        <li>Monitor types — CRT, LCD, LED, OLED, AMOLED comparison table</li>
+        <li>Modem — definition, purpose, types, why it is a peripheral (5 reasons)</li>
+      </ul>
+      <div class="sub-head">Question 2(b) + 4 — Computers &amp; Society</div>
+      <ul class="checklist">
+        <li>Types of computers — by size (5), by purpose (2), by data handling (3)</li>
+        <li>Social impact — at least 4 positive and 4 negative impacts with examples</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<script>
+function toggle(head) {
+  const body = head.nextElementSibling;
+  const arrow = head.querySelector('.arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+  head.classList.toggle('open', !isOpen);
+}
+// Open all topics by default
+document.querySelectorAll('.topic-head').forEach(h => toggle(h));
+</script>
+</body>
+</html>
